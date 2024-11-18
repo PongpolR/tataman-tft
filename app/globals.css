@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'CS ChatThai';
+  src: url('/app/fonts/CSChatThai.otf') format('truetype');
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -17,5 +22,36 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  scroll-behavior: smooth; /* Smooth scrolling for all users */
+}
+
+/* Customize scrollbars for WebKit browsers (Chrome, Safari, etc.) */
+@supports (-webkit-overflow-scrolling: touch) {
+  /* This targets macOS and iOS devices */
+  ::-webkit-scrollbar {
+    width: 4px; /* Smaller scrollbar width */
+    height: 4px; /* Smaller scrollbar height for horizontal scrollbar */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5); /* Thumb color */
+    border-radius: 10px; /* Rounded corners */
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.1); /* Track color */
+  }
+}
+
+/* Additional: For non-macOS devices or browsers that support overflow scrolling */
+@media (min-width: 1024px) {
+  ::-webkit-scrollbar {
+    width: 6px; /* Slightly larger scrollbar for desktop */
+    height: 6px; /* Horizontal scrollbar size */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px; /* Add radius for thumb */
+  }
 }
