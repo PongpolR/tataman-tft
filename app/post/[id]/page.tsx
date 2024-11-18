@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const PostDetail: React.FC = () => {
   const { id } = useParams(); // Access dynamic route parameters using useParams
@@ -65,7 +65,11 @@ const PostDetail: React.FC = () => {
     // },
   ];
 
-  const [post, setPost] = useState<any>(blogPosts[Number(id)-1]);
+  const [post, setPost] = useState(blogPosts[Number(id) - 1]);
+  
+  useEffect(() => {
+    setPost(blogPosts[Number(id) - 1])
+  }, [])
 
   return (
     <div className="mt-12 min-h-screen mx-auto p-6 font-chatthai max-w-[896px]">
@@ -73,9 +77,9 @@ const PostDetail: React.FC = () => {
         <div className="flex">
           <Image src="/ttm.jpg" alt="" height={80} width={80} />
           <div className="mt-2">
-            <a href="/" className="text-3xl font-extrabold ml-2">
+            <Link href="/" className="text-3xl font-extrabold ml-2">
               Tataman
-            </a>
+            </Link>
             <div className="ml-2 -mt-2 text-[20px] text-slate-500">
               TFT Player
             </div>

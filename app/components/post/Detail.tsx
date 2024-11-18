@@ -1,4 +1,3 @@
-import Image from "next/image";
 
 type DetailProps = {
   postId: number; // postId must be a number

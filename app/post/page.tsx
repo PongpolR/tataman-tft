@@ -1,3 +1,4 @@
+import Link from "next/link";
 
 const Header = () => {
     return (
@@ -5,7 +6,7 @@ const Header = () => {
         <div className="container mx-auto flex justify-between items-center p-4">
           {/* Logo */}
           <div className="text-lg font-bold">
-            <a href="/">TatamanTFT</a>
+            <Link href="/">TatamanTFT</Link>
           </div>
   
           {/* Navigation Menu */}

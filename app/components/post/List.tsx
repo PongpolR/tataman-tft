@@ -3,7 +3,6 @@ import { useRouter } from "next/navigation"; // Import useRouter from next/navig
 import { useEffect, useState } from "react";
 
 const List: React.FC = () => {
-  const [selectedPostId, setSelectedPostId] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
   const router = useRouter(); // Use the useRouter from next/navigation

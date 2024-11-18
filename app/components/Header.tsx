@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const Header = () => {
   return (
@@ -9,9 +10,9 @@ const Header = () => {
           <div className="flex">
             <Image src="/ttm.jpg" alt="" height={80} width={80} />
             <div className="mt-2">
-              <a href="/" className="text-3xl font-extrabold ml-2">
+              <Link href="/" className="text-3xl font-extrabold ml-2">
                 Tataman
-              </a>
+              </Link>
               <div className="ml-2 -mt-2 text-[20px] text-slate-500">
                 TFT Player
               </div>
