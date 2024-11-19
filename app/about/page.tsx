@@ -54,15 +54,15 @@ const About = () => {
         },
       ],
     },
-    {
-      set: "SET 13",
-      events: [
-        {
-          name: "Coming soon...",
-          result: "",
-        },
-      ],
-    },
+    // {
+    //   set: "SET 13",
+    //   events: [
+    //     {
+    //       name: "Coming soon...",
+    //       result: "",
+    //     },
+    //   ],
+    // },
   ];
 
   return (
