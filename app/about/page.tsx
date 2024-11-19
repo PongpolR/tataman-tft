@@ -57,8 +57,8 @@ const About = () => {
   ];
 
   return (
-    <div className="bg-white min-h-screen p-6 font-chatthai max-w-[896px] mx-auto mt-12">
-      <div className="font-chatthai">
+    <div className="bg-white min-h-screen p-6  max-w-[896px] mx-auto mt-12">
+      <div className="">
         <div className="flex">
           <Image src="/ttm.jpg" alt="" height={80} width={80} />
           <div className="mt-2">

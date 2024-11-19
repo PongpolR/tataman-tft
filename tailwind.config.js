@@ -11,8 +11,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Overpass", "sans-serif"], // Set Overpass as the default sans-serif font
-        chatthai: ['"CS ChatThai"', 'sans-serif'],
+        sans: ['Prompt', "Overpass", "sans-serif"], // Set Overpass as the default sans-serif font
+        // chatthai: ['Prompt', 'sans-serif'],
       },
     },
   },

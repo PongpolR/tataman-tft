@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'CS ChatThai';
-  src: url('/app/fonts/CSChatThai.otf') format('truetype');
+  font-family: "CS ChatThai";
+  src: url("/app/fonts/CSChatThai.woff") format("woff");
 }
 
 :root {
@@ -23,6 +23,7 @@ body {
   color: var(--foreground);
   background: var(--background);
   scroll-behavior: smooth; /* Smooth scrolling for all users */
+  font-family: "Prompt", sans-serif;
 }
 
 /* Customize scrollbars for WebKit browsers (Chrome, Safari, etc.) */

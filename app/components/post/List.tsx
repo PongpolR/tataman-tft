@@ -91,7 +91,7 @@ const List: React.FC = () => {
   };
 
   return (
-    <div className="bg-white min-h-screen mx-auto p-6 font-chatthai max-w-[896px]">
+    <div className="bg-white min-h-screen mx-auto p-6  max-w-[896px]">
       <div className="container mx-auto">
         <h1 className="text-2xl font-bold mb-6">Posts</h1>
         <div className="grid gap-6">

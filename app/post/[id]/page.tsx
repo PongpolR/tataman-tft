@@ -72,8 +72,8 @@ const PostDetail: React.FC = () => {
   }, [])
 
   return (
-    <div className="mt-12 min-h-screen mx-auto p-6 font-chatthai max-w-[896px]">
-      <div className="font-chatthai">
+    <div className="mt-12 min-h-screen mx-auto p-6  max-w-[896px]">
+      <div className="">
         <div className="flex">
           <Image src="/ttm.jpg" alt="" height={80} width={80} />
           <div className="mt-2">
