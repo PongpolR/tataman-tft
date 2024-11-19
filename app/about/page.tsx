@@ -54,6 +54,15 @@ const About = () => {
         },
       ],
     },
+    {
+      set: "SET 13",
+      events: [
+        {
+          name: "Coming soon...",
+          result: "",
+        },
+      ],
+    },
   ];
 
   return (
@@ -75,7 +84,10 @@ const About = () => {
 
       {/* Peak Rank Section */}
       <section className="mb-12">
-        <h2 className="text-2xl font-semibold  mb-4">Peak Rank</h2>
+        <h2 className="text-2xl font-semibold mb-1">Peak Rank</h2>
+        
+        <div className="flex text-left mb-3"><Image src="/rank.jpg" alt="" height={0} width={280} /></div>
+
         <ul>
           {peakRank.map((item) => (
             <li key={item.set} className="mb-2">
@@ -102,7 +114,9 @@ const About = () => {
         ))}
       </section>
 
-      <Link href={"/"} className="text-[20px] hover:underline">กลับหน้าหลัก</Link>
+      <Link href={"/"} className="text-[20px] hover:underline">
+        กลับหน้าหลัก
+      </Link>
     </div>
   );
 };
