@@ -12,7 +12,7 @@ const Header = () => {
               <Link href="/" className="text-3xl font-extrabold ml-2">
                 Tataman
               </Link>
-              <div className="ml-2 -mt-2 text-[20px] text-slate-500">
+              <div className="ml-[11px] -mt-2 text-[20px] text-slate-500">
                 TFT Player
               </div>
             </div>

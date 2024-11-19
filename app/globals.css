@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: "CS ChatThai";
-  src: url("/app/fonts/CSChatThai.woff") format("woff");
-}
-
 :root {
   --background: #ffffff;
   --foreground: #171717;

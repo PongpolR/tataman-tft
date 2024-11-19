@@ -8,7 +8,7 @@ const Detail = ({ postId, onBack }: DetailProps) => {
   const blogPosts = [
     {
       id: 1,
-      title: "How to Get Started with React",
+      title: "[TIP] การตัดสินใจผสมไอเทม (Slamming Items)",
       content:
         "React is a JavaScript library for building user interfaces. It was developed by Facebook and is now widely used for creating web and mobile applications...",
       date: "November 10, 2024",

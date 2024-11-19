@@ -10,59 +10,11 @@ const List: React.FC = () => {
   const blogPosts = [
     {
       id: 1,
-      title: "How to Get Started with React",
+      title: "[TIP] การตัดสินใจผสมไอเทม (Slamming Items)",
       description:
-        "A comprehensive guide to understanding the basics of React and how to start building your first project.",
-      date: "November 10, 2024",
+        "ผสมไอเทมยังไงให้คุ้มค่า ตรง gameplan ของเรา และไม่เสีย timing",
+      date: "19/11/2024",
     },
-    // {
-    //   id: 2,
-    //   title: "Mastering Tailwind CSS",
-    //   description:
-    //     "Learn how to create stunning and responsive designs with Tailwind CSS effortlessly.",
-    //   date: "November 12, 2024",
-    // },
-    // {
-    //   id: 3,
-    //   title: "Understanding JavaScript Closures",
-    //   description:
-    //     "Dive deep into the concept of closures in JavaScript and see how they power modern web development.",
-    //   date: "November 15, 2024",
-    // },
-    // {
-    //   id: 4,
-    //   title: "Another Post Example",
-    //   description:
-    //     "This is an additional example of a blog post to demonstrate pagination.",
-    //   date: "November 16, 2024",
-    // },
-    // {
-    //   id: 5,
-    //   title: "Using React Hooks",
-    //   description:
-    //     "A beginner-friendly guide to using React Hooks in functional components.",
-    //   date: "November 17, 2024",
-    // },
-    // {
-    //   id: 6,
-    //   title: "Advanced Tailwind CSS Tips",
-    //   description:
-    //     "Learn advanced techniques to improve your Tailwind CSS workflow.",
-    //   date: "November 18, 2024",
-    // },
-    // {
-    //   id: 7,
-    //   title: "JavaScript Promises Explained",
-    //   description:
-    //     "Understand JavaScript Promises and how to handle asynchronous operations effectively.",
-    //   date: "November 19, 2024",
-    // },
-    // {
-    //   id: 8,
-    //   title: "CSS Grid vs Flexbox",
-    //   description: "When to use CSS Grid and Flexbox for responsive layouts.",
-    //   date: "November 20, 2024",
-    // },
   ];
 
   const totalPages = Math.ceil(blogPosts.length / itemsPerPage);

@@ -10,87 +10,151 @@ const PostDetail: React.FC = () => {
   const blogPosts = [
     {
       id: 1,
-      title: "How to Get Started with React",
-      description:
-        "A comprehensive guide to understanding the basics of React and how to start building your first project.",
-      date: "November 10, 2024",
+      title: "[TIP] การตัดสินใจผสมไอเทม (Slamming Items)",
+      header: "คำศัพท์ที่เกี่ยวข้อง",
+      header_desc: [
+        "Slam Item: การผสมชิ้นส่วนไอเทมสองชิ้นเพื่อทำไอเท็ม 1 ชิ้นให้กับ unit ที่ต้องการจะใส่",
+        "BIS (Best In Slot): เซตของไอเท็มสามชิ้นที่ดีที่สุดของตัวละครนั้นๆ",
+        "Tempo: การตัดสินใจบางอย่างที่ช่วยให้บอร์ดเก่งขึ้นอย่างมีนัยสำคัญ ณ ช่วงเวลานั้นๆ เช่น อัพเลเวลก่อนคนอื่น เพื่อ odd% หรือ strongest board, การ slam item เพื่อเซฟเลือด, การสุ่มหา unit เพื่อหนีตาย 9ล9",
+        "Cut down component: การจัดการกับ item component ที่ไม่ค่อยจำเป็น โดยวิธีผสมไอเทมที่จะทำให้บอร์ดของเราได้ value มากขึ้นใน timing เดียวกันเมื่อเทียบกับคนอื่นๆ",
+        "LW: Last Wrisper",
+        "RB: Guinsoo Rageblade",
+        "IE: Infinity Edge",
+        "DB: Death Blade",
+        "GS: Giant Slayer",
+      ],
+      body: [
+        "ในโพสต์นี้จะยกตัวอย่าง unit ที่จะทำ BIS item เป็น tristana จาก Set13 PBE โดย BIS ของ tristana จะเป็น DB RB IE, RB IE GS, LW RB IE เป็นต้น",
+      ],
+      img: "/post1-1.png",
+      img_desc: "รูปที่ 1: Stat ของ set item unit tristana",
+      body2: [
+        "จากรูปที่ 2 จะเป็นตัวอย่าง item component ที่ได้ตอนต้นเกม หากต้องการ commit comp tristana เราสามารถ slam bow กับ glove ได้เลย ซึ่งชิ้นส่วนที่เหลือจะเป็น tear",
+        "โดยสิ่งที่เราต้องทำหลังจาก slam LW มาแล้ว ตัวเลือกแรกไม่ใช่พยายามทำไอเทมชิ้นต่อไปให้ tristana แต่ต้องพยายามกำจัด tear ออกไปให้ได้ด้วย ซึ่ง component ที่จะ cut down tear ได้ อาจจะเป็น belt/chain ซึ่งเป็น item ที่เราจะเอาไปใส่ให้ตัว tank เป็นต้น",
+      ],
+      img2: "/post1-2.png",
+      img2_desc: "รูปที่ 2: ตัวอย่าง component item ที่ได้ตอนต้นเกม",
+      date: "19/11/2024",
+      summary: ["มองหา choice ก่อนที่จะ slam item โดยพิจารณาจาก component item ที่ตัวเองมี", "ต้องคิดเผื่อด้วยว่าถ้า slam item ชิ้นนั้นๆ ไปแล้ว component item ที่เหลืออยู่จะมีอะไรบ้าง แล้วจะทำยังไงกับมันต่อ", "BIS ของตัวแบกสำคัญเสมอถ้าเป็นไปได้อย่าผสมไอเทมมั่วๆ เพื่อ tempo บางสถานการณ์รอได้ แต่บางทีอาจต้อง slam item บางอย่างที่อาจจะไม่ใช่ไอเทมที่ดีที่สุดแต่เป็นทางเลือกที่ดีที่สุด ณ เวลานั้นๆ", "timing ของการ slam item ที่ต่างช่วงเวลากันมีผลต่อความเก่งของบอร์ดอย่างชัดเจน"],
+      ref: ["https://www.metatft.com/"],
     },
-    // {
-    //   id: 2,
-    //   title: "Mastering Tailwind CSS",
-    //   description:
-    //     "Learn how to create stunning and responsive designs with Tailwind CSS effortlessly.",
-    //   date: "November 12, 2024",
-    // },
-    // {
-    //   id: 3,
-    //   title: "Understanding JavaScript Closures",
-    //   description:
-    //     "Dive deep into the concept of closures in JavaScript and see how they power modern web development.",
-    //   date: "November 15, 2024",
-    // },
-    // {
-    //   id: 4,
-    //   title: "Another Post Example",
-    //   description:
-    //     "This is an additional example of a blog post to demonstrate pagination.",
-    //   date: "November 16, 2024",
-    // },
-    // {
-    //   id: 5,
-    //   title: "Using React Hooks",
-    //   description:
-    //     "A beginner-friendly guide to using React Hooks in functional components.",
-    //   date: "November 17, 2024",
-    // },
-    // {
-    //   id: 6,
-    //   title: "Advanced Tailwind CSS Tips",
-    //   description:
-    //     "Learn advanced techniques to improve your Tailwind CSS workflow.",
-    //   date: "November 18, 2024",
-    // },
-    // {
-    //   id: 7,
-    //   title: "JavaScript Promises Explained",
-    //   description:
-    //     "Understand JavaScript Promises and how to handle asynchronous operations effectively.",
-    //   date: "November 19, 2024",
-    // },
-    // {
-    //   id: 8,
-    //   title: "CSS Grid vs Flexbox",
-    //   description: "When to use CSS Grid and Flexbox for responsive layouts.",
-    //   date: "November 20, 2024",
-    // },
   ];
 
   const [post, setPost] = useState(blogPosts[Number(id) - 1]);
-  
+
   useEffect(() => {
-    setPost(blogPosts[Number(id) - 1])
-  }, [])
+    setPost(blogPosts[Number(id) - 1]);
+  }, []);
+
+  // Calculate reading time based on word count
+  const calculateReadingTime = (text: string) => {
+    const words = text.split(/\s+/).length; // Split by whitespace to count words
+    const wordsPerMinute = 120; // Average words per minute
+    const minutes = Math.ceil(words / wordsPerMinute); // Round up to the nearest minute
+    return minutes;
+  };
+
+  // Combine body and body2 for total word count
+  const totalText = [
+    ...post.title,
+    post.header,
+    post.header_desc,
+    ...post.body,
+    ...post.body2,
+    post.ref,
+  ].join(" ");
+  const readingTime = calculateReadingTime(totalText);
 
   return (
-    <div className="mt-12 min-h-screen mx-auto p-6  max-w-[896px]">
-      <div className="">
-        <div className="flex">
-          <Image src="/ttm.jpg" alt="" height={80} width={80} />
-          <div className="mt-2">
-            <Link href="/" className="text-3xl font-extrabold ml-2">
-              Tataman
-            </Link>
-            <div className="ml-2 -mt-2 text-[20px] text-slate-500">
-              TFT Player
-            </div>
+    <div className="mt-12 min-h-screen mx-auto p-6 max-w-[896px]">
+      <div className="flex">
+        <Image
+          src="/ttm.jpg"
+          alt=""
+          height={80}
+          width={80}
+          className="h-[80px]"
+        />
+        <div className="mt-2">
+          <Link href="/" className="text-3xl font-extrabold ml-2">
+            Tataman
+          </Link>
+          <div className="ml-[11px] -mt-2 -mb-1 text-[20px] text-slate-500">
+            TFT Player
           </div>
         </div>
       </div>
-      <h1 className="mt-8 text-2xl font-bold">{post.title}</h1>
-      <p className="text-lg">{post.description}</p>
-      <span className="text-sm text-gray-500">{post.date}</span>
-      <div className="mt-8">
-        <Link href={"/"} className="text-[20px] hover:underline text-slate-500">กลับหน้าหลัก</Link>
+      <h1 className="mt-8">
+        <span className="font-bold text-xl">{post.title}</span>{" "}
+        <span className=" font-sans font-extralight text-slate-600 mb-2">
+          • {post.date} • {readingTime} min read
+        </span>
+      </h1>
+      <p className="text-lg mt-2 font-bold">{post.header}</p>
+      <div className="text-lg">
+        {post.header_desc.map((d) => (
+          <div key={d}>- {d}</div>
+        ))}
+      </div>
+      <div className="text-lg mt-2">
+        {post.body.map((d) => (
+          <div key={d} className="mb-1 text-justify">
+            {d}
+          </div>
+        ))}
+      </div>
+      <div className="mt-2">
+        <img src={post.img} alt="" className="w-full h-full" />
+        <div className="text-center font-light text-sm mt-1">
+          {post.img_desc}
+        </div>
+      </div>
+      <div className="text-lg mt-2">
+        {post.body2.map((d) => (
+          <div key={d} className="mb-1 text-justify">
+            {d}
+          </div>
+        ))}
+      </div>
+      <div className="mt-2">
+        <img src={post.img2} alt="" className="w-full h-full object-cover" />
+        <div className="text-center font-light text-sm mt-1">
+          {post.img2_desc}
+        </div>
+      </div>
+      <div className="mt-2 font-bold text-[20px]">สรุป</div>
+      <div className="text-lg">
+        {post.summary.map((d) => (
+          <div key={d} className="mb-1 text-justify">
+            - {d}
+          </div>
+        ))}
+      </div>
+      <div className="mt-4 font-bold text-[20px]">Reference</div>
+      <div>
+        {post.ref.map((d, i) => (
+          <div key={d} className="font-light">
+            {i + 1}.{" "}
+            <Link
+              href={"https://www.metatft.com/"}
+              target="_blank"
+              className="hover:underline"
+            >
+              {d}
+            </Link>
+          </div>
+        ))}
+        {/* <Link href={"https://www.metatft.com/"} target="_blank">
+          - https://www.metatft.com/
+        </Link> */}
+      </div>
+      <div className="mt-12 text-center">
+        <Link
+          href={"/"}
+          className="text-[20px] font-light hover:underline text-slate-500"
+        >
+          กลับหน้าหลัก
+        </Link>
       </div>
     </div>
   );
