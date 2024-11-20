@@ -3,68 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 const About = () => {
-  const peakRank = [
-    { set: "SET 8", rank: "Platinum III" },
-    { set: "SET 8.5", rank: "Diamond I" },
-    { set: "SET 9", rank: "Grandmaster" },
-    { set: "SET 9.5", rank: "Master" },
-    { set: "SET 10", rank: "Master" },
-    { set: "SET 11", rank: "Master" },
-    { set: "SET 12", rank: "Master" },
-  ];
-
-  const tournaments = [
-    {
-      set: "SET 9",
-      events: [{ name: "Chibi Tournament", result: "Top 128" }],
-    },
-    {
-      set: "SET 10",
-      events: [
-        { name: "Chalieo Cup", result: "Top 128" },
-        { name: "SV Tournament", result: "1st place🏆" },
-        {
-          name: "กิจกรรม discord's ได้โปรดมาเล่นเถอะครับพี่",
-          result: "Top 128",
-        },
-        { name: "TFT Battle Arena [GAMIQO]", result: "TOP 16" },
-        {
-          name: "TFT Community Tournament Comp ครั้งที่ 2 [OvertimeCo]",
-          result: "Top 128",
-        },
-      ],
-    },
-    {
-      set: "SET 11",
-      events: [
-        { name: "TFT Lunar Tournament [SPU]", result: "Top 64" },
-        { name: "TFT Battle Arena SS2 [GAMIQO]", result: "TOP 64" },
-        {
-          name: "TFT Draw Your Destiny Open Tournament",
-          result: "Qualifier Round - Top 512",
-        },
-      ],
-    },
-    {
-      set: "SET 12",
-      events: [
-        {
-          name: "TFT Master Of Magic Open Tournament",
-          result: "Qualifier Round - Top 1024",
-        },
-      ],
-    },
-    // {
-    //   set: "SET 13",
-    //   events: [
-    //     {
-    //       name: "Coming soon...",
-    //       result: "",
-    //     },
-    //   ],
-    // },
-  ];
-
   return (
     <div className="bg-white min-h-screen p-6  max-w-[896px] mx-auto mt-12">
       <div className="">
