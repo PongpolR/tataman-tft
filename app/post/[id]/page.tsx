@@ -38,6 +38,30 @@ const PostDetail: React.FC = () => {
       summary: ["มองหา choice ก่อนที่จะ slam item โดยพิจารณาจาก component item ที่ตัวเองมี", "ต้องคิดเผื่อด้วยว่าถ้า slam item ชิ้นนั้นๆ ไปแล้ว component item ที่เหลืออยู่จะมีอะไรบ้าง แล้วจะทำยังไงกับมันต่อ", "BIS ของตัวแบกสำคัญเสมอถ้าเป็นไปได้อย่าผสมไอเทมมั่วๆ เพื่อ tempo บางสถานการณ์รอได้ แต่บางทีอาจต้อง slam item บางอย่างที่อาจจะไม่ใช่ไอเทมที่ดีที่สุดแต่เป็นทางเลือกที่ดีที่สุด ณ เวลานั้นๆ", "timing ของการ slam item ที่ต่างช่วงเวลากันมีผลต่อความเก่งของบอร์ดอย่างชัดเจน"],
       ref: ["https://www.metatft.com/"],
     },
+    {
+      id: 2,
+      title: "[TIP] Trait Scrap ยิ่งไอเทมเยอะยิ่งเก่ง!?",
+      header: "คำศัพท์ที่เกี่ยวข้อง (Augment)",
+      header_desc: [
+        "Combat: augment ที่ช่วยเสริมความเก่งของบอร์ดหรือ unit",
+        "Econ: augment ที่ช่วยด้านการเงินหรือเลเวล",
+        "Item: augment ที่ให้ item",
+      ],
+      body: [
+        "Trait Scraps มีคุณสมบัติหลักๆ คือเมื่อเริ่มการต่อสู้ unit scrap ตัวไหนที่ใส่ item component ไว้ จะถูกเปลี่ยนเป็น complete item เมื่อเริ่มการต่อสู้ และบอร์ดของเราจะได้รับโล่ตามจำนวนไอเทมที่ใส่ให้ unit",
+        
+      ],
+      img: "/post2-1.png",
+      img_desc: "รูปที่ 1: Description Trait Scrap",
+      body2: [
+        "วิเคราะห์ง่ายๆ ไม่ซับซ้อนคือ trait นี้ ไอเทมยิ่งเยอะยิ่งเก่งแน่นอน สมมติว่าถ้าเราต้องการเล่น corki 6 scraps first priority ของ item component ควรจะเป็นดาบ และ priority ของ augment จะเป็น emblem (ช่วยให้ cap ง่ายขึ้น) > item (item augment เป็นทั้ง item และ combat ในเวลาเดียวกันสำหรับบอร์ดนี้) > econ/combat"
+      ],
+      img2: "/post2-2.png",
+      img2_desc: "รูปที่ 2: ตัวอย่าง board corki scraps fast8",
+      date: "19/11/2024",
+      summary: ["ถ้า encounter เป็นอันที่แจก item หรือเกมที่ได้ item เยอะๆ scraps เป็นอะไรที่น่าเล่นมาก", "ถึงแม้ว่า comp corki scrap อยากได้ item จำนวนมากก็จริง แต่ต้องอย่าลืมว่าการเลือก augment ควรพิจารณาจากบอร์ด สถานการณ์ปัจจุบันและอื่นๆ อีกด้วย"],
+      ref: ["https://tactics.tools/traits", "https://tftacademy.com/tierlist/comps/set-13-silver-scraps"],
+    },
   ];
 
   const [post, setPost] = useState(blogPosts[Number(id) - 1]);
@@ -104,7 +128,7 @@ const PostDetail: React.FC = () => {
         ))}
       </div>
       <div className="mt-2">
-        <img src={post.img} alt="" className="w-full h-full" />
+        <img src={post.img} alt="" className="mx-auto" />
         <div className="text-center font-light text-sm mt-1">
           {post.img_desc}
         </div>
@@ -117,7 +141,7 @@ const PostDetail: React.FC = () => {
         ))}
       </div>
       <div className="mt-2">
-        <img src={post.img2} alt="" className="w-full h-full object-cover" />
+        <img src={post.img2} alt="" className="mx-auto" />
         <div className="text-center font-light text-sm mt-1">
           {post.img2_desc}
         </div>

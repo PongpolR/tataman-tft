@@ -10,6 +10,13 @@ const List: React.FC = () => {
 
   const blogPosts = [
     {
+      id: 2,
+      title: "[TIP] Trait Scraps ยิ่งไอเทมเยอะยิ่งเก่ง!?",
+      description:
+        "Tip ของ comp ที่มี Scraps เป็น trait หลัก",
+      date: "20/11/2024",
+    },
+    {
       id: 1,
       title: "[TIP] การตัดสินใจผสมไอเทม (Slamming Items)",
       description:
