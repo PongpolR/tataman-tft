@@ -8,7 +8,7 @@ const prompt = Noto_Sans_Thai({
 });
 
 export const metadata: Metadata = {
-  title: "TatamanTFT",
+  title: "Tataman TFT",
   description: "Tataman TFT Blog",
 };
 
