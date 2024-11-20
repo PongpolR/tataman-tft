@@ -1,11 +1,12 @@
 "use client";
-import { useRouter } from "next/navigation"; // Import useRouter from next/navigation
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const List: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false); // State to track loading
   const itemsPerPage = 5;
-  const router = useRouter(); // Use the useRouter from next/navigation
+  const router = useRouter();
 
   const blogPosts = [
     {
@@ -21,37 +22,44 @@ const List: React.FC = () => {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentPosts = blogPosts.slice(startIndex, startIndex + itemsPerPage);
 
-  // Handle page change and save to sessionStorage
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     sessionStorage.setItem("currentPage", page.toString());
   };
 
-  // Check for saved page in sessionStorage on initial load
   useEffect(() => {
     const savedPage = sessionStorage.getItem("currentPage");
     if (savedPage) {
       setCurrentPage(Number(savedPage));
     } else {
-      setCurrentPage(1); // Default to page 1 if no saved page
+      setCurrentPage(1);
     }
   }, []);
 
-  // Navigate to the post detail page on click
-  const handlePostClick = (id: number) => {
+  const handlePostClick = async (id: number) => {
+    setIsLoading(true); // Show loader
+    await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate delay
     router.push(`/post/${id}`); // Redirect to the post detail page
   };
 
   return (
-    <div className="bg-white min-h-screen mx-auto p-6  max-w-[896px]">
+    <div className="bg-white min-h-screen mx-auto p-6 max-w-[896px]">
       <div className="container mx-auto">
         <h1 className="text-2xl font-bold mb-6">Posts</h1>
+
+        {/* Loader */}
+        {isLoading && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="w-16 h-16 rounded-full border-4 border-solid border-gray-200 border-t-blue-500 animate-spin-fast"></div>
+          </div>
+        )}
+
         <div className="grid gap-6">
           {currentPosts.map((post) => (
             <div
               key={post.id}
               className="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition-shadow duration-300 hover:cursor-pointer"
-              onClick={() => handlePostClick(post.id)} // Use the new click handler
+              onClick={() => handlePostClick(post.id)}
             >
               <h2 className="text-xl font-semibold mb-2">{post.title}</h2>
               <p className="text-gray-600 mb-4">{post.description}</p>

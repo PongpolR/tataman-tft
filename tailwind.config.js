@@ -11,7 +11,12 @@ module.exports = {
       fontFamily: {
         sans: ['Noto Sans Thai', "Overpass", "sans-serif"],
       },
+      animation: {
+        'spin-fast': 'spin 0.5s linear infinite',
+      },
     },
   },
-  plugins: [],
+  plugins: [
+   
+  ],
 };
