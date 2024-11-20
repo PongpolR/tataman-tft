@@ -50,7 +50,7 @@ const Detail = ({ postId, onBack }: DetailProps) => {
         <p className="text-gray-700 leading-relaxed">{post.content}</p>
         <button
           onClick={onBack}
-          className="text-blue-500 hover:underline mt-6 inline-block"
+          className=" hover:underline mt-6 inline-block"
         >
           กลับหน้าหลัก
         </button>

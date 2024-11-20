@@ -85,8 +85,10 @@ const About = () => {
       {/* Peak Rank Section */}
       <section className="mb-12">
         <h2 className="text-2xl font-semibold mb-1">Peak Rank</h2>
-        
-        <div className="flex text-left mb-3"><Image src="/rank.jpg" alt="" height={0} width={280} /></div>
+
+        <div className="flex text-left mb-3">
+          <Image src="/rank.jpg" alt="" height={0} width={280} />
+        </div>
 
         <ul>
           {peakRank.map((item) => (
@@ -114,9 +116,14 @@ const About = () => {
         ))}
       </section>
 
-      <Link href={"/"} className="text-[20px] hover:underline">
-        กลับหน้าหลัก
-      </Link>
+      <div className="flex">
+        <Link
+          href={"/"}
+          className="text-[20px] hover:underline text-center mx-auto font-light"
+        >
+          กลับหน้าหลัก
+        </Link>
+      </div>
     </div>
   );
 };

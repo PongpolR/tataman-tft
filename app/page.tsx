@@ -1,9 +1,9 @@
 import Header from './components/Header';
 import List from './components/post/List';
 
-import { Prompt } from 'next/font/google';
+import { Noto_Sans_Thai } from 'next/font/google';
 
-const prompt = Prompt({
+const prompt = Noto_Sans_Thai({
   subsets: ['thai', 'latin'], // Ensure Thai subset is included
   weight: ['400', '500', '700'], // Choose the font weights you need
 });

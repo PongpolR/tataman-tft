@@ -32,9 +32,19 @@ const Header = () => {
           </ul>
         </nav>
       </div>
-      <div className="container mx-auto max-w-[896px]  items-center p-4  text-[20px] text-justify font-light">
+      {/* <div className="mt-4  bg-gray-100 container mx-auto max-w-[848px]  items-center p-4  text-[20px] text-justify font-light">
         สวัสดีทุกคน ผมตาต้านะครับ เล่นเกม TFT (Teamfight Tactic) เป็นหลัก ต้องการที่จะแบ่งปันข่าวสาร และเทคนิคต่างๆ เกี่ยวกับเกมเท่าที่ทราบ สามารถอ่านได้ทั้งผู้เล่นใหม่ และผู้เล่นเก่า โดย blog นี้จะเน้นข้อมูลในเชิง <b>competitive</b> เป็นหลักครับ
-      </div>
+      </div> */}
+      <div className="container mx-auto max-w-[848px] p-6 bg-gray-100 rounded-lg shadow-md">
+  <h1 className="text-2xl font-semibold text-center mb-4">ถึงเวลาอัปเกรดความรู้ TFT ของคุณแล้ว – มาเริ่มกันเลย!</h1>
+  <p className="text-lg leading-relaxed text-gray-800 font-light text-justify">
+    ผมตาต้านะครับ เล่นเกม TFT (Teamfight Tactic) เป็นหลัก ต้องการที่จะแบ่งปันข่าวสาร 
+    และเทคนิคต่างๆ เกี่ยวกับเกมเท่าที่ทราบ สามารถอ่านได้ทั้งผู้เล่นใหม่ และผู้เล่นเก่า โดย 
+    blog นี้จะเน้นข้อมูลในเชิง <b className="font-medium text-blue-600">competitive </b> 
+     เป็นหลักครับ
+  </p>
+</div>
+
     </header>
   );
 };

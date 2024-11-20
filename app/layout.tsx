@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Prompt } from 'next/font/google';
+import { Noto_Sans_Thai } from 'next/font/google';
 import "./globals.css";
 
-const prompt = Prompt({
+const prompt = Noto_Sans_Thai({
   subsets: ['thai', 'latin'], // Ensure Thai subset is included
   weight: ['100', '200', '300', '400', '500', '700'], // Choose the font weights you need
 });

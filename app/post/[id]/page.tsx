@@ -151,7 +151,7 @@ const PostDetail: React.FC = () => {
       <div className="mt-12 text-center">
         <Link
           href={"/"}
-          className="text-[20px] font-light hover:underline text-slate-500"
+          className="text-[20px] font-light hover:underline "
         >
           กลับหน้าหลัก
         </Link>

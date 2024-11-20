@@ -9,7 +9,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Prompt', "Overpass", "sans-serif"],
+        sans: ['Noto Sans Thai', "Overpass", "sans-serif"],
       },
     },
   },
