@@ -160,7 +160,7 @@ const PostDetail: React.FC = () => {
           <div key={d} className="font-light">
             {i + 1}.{" "}
             <Link
-              href={"https://www.metatft.com/"}
+              href={post.ref[i]}
               target="_blank"
               className="hover:underline"
             >
