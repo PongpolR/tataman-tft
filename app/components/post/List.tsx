@@ -10,6 +10,12 @@ const List: React.FC = () => {
 
   const blogPosts = [
     {
+      id: 3,
+      title: "[TIP] แนะนำ Augment Tower Defense",
+      description: 'หนึ่งใน Augment สารพัดประโยชน์ที่ได้ทั้ง dummie ตีไกล รวมถึงได้ emblem ติดมาอีกอันด้วยนะ',
+      date: "2ุ6/11/2024",
+    },
+    {
       id: 2,
       title: "[TIP] Trait Scraps ยิ่งไอเทมเยอะยิ่งเก่ง!?",
       description:

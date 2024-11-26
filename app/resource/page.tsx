@@ -7,7 +7,15 @@ const About = () => {
     <div className="bg-white min-h-screen p-6  max-w-[896px] mx-auto mt-12">
       <div className="">
         <div className="flex">
-          <Image src="/ttm.jpg" alt="" height={80} width={80} />
+        <Link href="/">
+          <Image
+            src="/ttm.jpg"
+            alt=""
+            height={80}
+            width={80}
+            style={{ cursor: "pointer" }} // Optional: indicates the image is clickable
+          />
+        </Link>
           <div className="mt-2">
             <Link href="/" className="text-3xl font-extrabold ml-2">
               Tataman
@@ -23,11 +31,21 @@ const About = () => {
 
       <div>
         <ul className="ml-8 list-disc mb-4">
-          <li>Fuutime</li>
-          <li>Cursedzxz</li>
-          <li>FoemanDD</li>
-          <li>Reverie</li>
-          <li>Itzphawoak</li>
+          <li>Fuutime (Twitch)</li>
+          <li>Cursedzxz (Twitch/Youtube)</li>
+          <li>FoemanDD (Soop)</li>
+          <li>Reverie (Twitch)</li>
+          <li>Itzphawoak (Twitch)</li>
+        </ul>
+      </div>
+
+      <div className="mb-2 text-justify">Deep technique/Hidden Comp (On X aka.twitter)</div>
+      <div>
+        <ul className="ml-8 list-disc mb-4">
+          <li>khymTFT</li>
+          <li>ClementKChu</li>
+          <li>mindful_one_</li>
+          <li>orgap1</li>
         </ul>
       </div>
 

@@ -35,7 +35,12 @@ const PostDetail: React.FC = () => {
       img2: "/post1-2.png",
       img2_desc: "รูปที่ 2: ตัวอย่าง component item ที่ได้ตอนต้นเกม",
       date: "19/11/2024",
-      summary: ["มองหา choice ก่อนที่จะ slam item โดยพิจารณาจาก component item ที่ตัวเองมี", "ต้องคิดเผื่อด้วยว่าถ้า slam item ชิ้นนั้นๆ ไปแล้ว component item ที่เหลืออยู่จะมีอะไรบ้าง แล้วจะทำยังไงกับมันต่อ", "BIS ของตัวแบกสำคัญเสมอถ้าเป็นไปได้อย่าผสมไอเทมมั่วๆ เพื่อ tempo บางสถานการณ์รอได้ แต่บางทีอาจต้อง slam item บางอย่างที่อาจจะไม่ใช่ไอเทมที่ดีที่สุดแต่เป็นทางเลือกที่ดีที่สุด ณ เวลานั้นๆ", "timing ของการ slam item ที่ต่างช่วงเวลากันมีผลต่อความเก่งของบอร์ดอย่างชัดเจน"],
+      summary: [
+        "มองหา choice ก่อนที่จะ slam item โดยพิจารณาจาก component item ที่ตัวเองมี",
+        "ต้องคิดเผื่อด้วยว่าถ้า slam item ชิ้นนั้นๆ ไปแล้ว component item ที่เหลืออยู่จะมีอะไรบ้าง แล้วจะทำยังไงกับมันต่อ",
+        "BIS ของตัวแบกสำคัญเสมอถ้าเป็นไปได้อย่าผสมไอเทมมั่วๆ เพื่อ tempo บางสถานการณ์รอได้ แต่บางทีอาจต้อง slam item บางอย่างที่อาจจะไม่ใช่ไอเทมที่ดีที่สุดแต่เป็นทางเลือกที่ดีที่สุด ณ เวลานั้นๆ",
+        "timing ของการ slam item ที่ต่างช่วงเวลากันมีผลต่อความเก่งของบอร์ดอย่างชัดเจน",
+      ],
       ref: ["https://www.metatft.com/"],
     },
     {
@@ -49,18 +54,50 @@ const PostDetail: React.FC = () => {
       ],
       body: [
         "Trait Scraps มีคุณสมบัติหลักๆ คือเมื่อเริ่มการต่อสู้ unit scrap ตัวไหนที่ใส่ item component ไว้ จะถูกเปลี่ยนเป็น complete item เมื่อเริ่มการต่อสู้ และบอร์ดของเราจะได้รับโล่ตามจำนวนไอเทมที่ใส่ให้ unit",
-        
       ],
       img: "/post2-1.png",
       img_desc: "รูปที่ 1: Description Trait Scrap",
       body2: [
-        "วิเคราะห์ง่ายๆ ไม่ซับซ้อนคือ trait นี้ ไอเทมยิ่งเยอะยิ่งเก่งแน่นอน สมมติว่าถ้าเราต้องการเล่น corki 6 scraps first priority ของ item component ควรจะเป็นดาบ และ priority ของ augment จะเป็น emblem (ช่วยให้ cap ง่ายขึ้น) > item (item augment เป็นทั้ง item และ combat ในเวลาเดียวกันสำหรับบอร์ดนี้) > econ/combat"
+        "วิเคราะห์ง่ายๆ ไม่ซับซ้อนคือ trait นี้ ไอเทมยิ่งเยอะยิ่งเก่งแน่นอน สมมติว่าถ้าเราต้องการเล่น corki 6 scraps first priority ของ item component ควรจะเป็นดาบ และ priority ของ augment จะเป็น emblem (ช่วยให้ cap ง่ายขึ้น) > item (item augment เป็นทั้ง item และ combat ในเวลาเดียวกันสำหรับบอร์ดนี้) > econ/combat",
       ],
       img2: "/post2-2.png",
       img2_desc: "รูปที่ 2: ตัวอย่าง board corki scraps fast8",
       date: "19/11/2024",
-      summary: ["ถ้า encounter เป็นอันที่แจก item หรือเกมที่ได้ item เยอะๆ scraps เป็นอะไรที่น่าเล่นมาก", "ถึงแม้ว่า comp corki scrap อยากได้ item จำนวนมากก็จริง แต่ต้องอย่าลืมว่าการเลือก augment ควรพิจารณาจากบอร์ด สถานการณ์ปัจจุบันและอื่นๆ อีกด้วย"],
-      ref: ["https://tactics.tools/traits", "https://tftacademy.com/tierlist/comps/set-13-silver-scraps"],
+      summary: [
+        "ถ้า encounter เป็นอันที่แจก item หรือเกมที่ได้ item เยอะๆ scraps เป็นอะไรที่น่าเล่นมาก",
+        "ถึงแม้ว่า comp corki scrap อยากได้ item จำนวนมากก็จริง แต่ต้องอย่าลืมว่าการเลือก augment ควรพิจารณาจากบอร์ด สถานการณ์ปัจจุบันและอื่นๆ อีกด้วย",
+      ],
+      ref: [
+        "https://tactics.tools/traits",
+        "https://tftacademy.com/tierlist/comps/set-13-silver-scraps",
+      ],
+    },
+    {
+      id: 3,
+      title: "[TIP] แนะนำ Augment Tower Defense",
+      header: "",
+      header_desc: [],
+      body: [
+        "Augment Tower Defense เมื่อเลือกมาจะได้ dummie ตีไกลที่จะอัพเกรดระดับของมันตามช่วงเวลาของเกม และได้ emblem แบบสุ่มติดมา 1 ชิ้น ส่วนตัวผมมองว่าเป็นหนึ่งใน Augment ที่น่าหยิบมากๆ ทำ capboard ได้ง่ายขึ้นหากเล่น comp fast8/9 เช่น ได้ emblem sentinel มา เราจะ drop sentinel ที่เวล 8 ตัวนึงแล้วเติม trait อื่นได้เพิ่ม เป็นต้น โดยรวมแล้วมันเป็น Augment ที่ค่อนข้างดีมากๆ ตอนนี้เลย",
+      ],
+      img: "/post3-1.png",
+      img_desc: "รูปที่ 1: Description Tower Defense",
+      body2: [
+        "ตัวอย่างที่ยกมาจะเป็น Augment Tower Defense ให้ emblem sentinel มา ในกรณีนี้บอร์ดที่โหดที่สุด ณ ขณะนี้หนึ่งในนั้นคงไม่พ้น Heimer Sentinel ซึ่งบอร์ดจะเก่งที่สุดจริงๆ คือตอน lv.9 ที่ได้ trait มาเยอะมากๆ ตัว tank เยอะ ดาเมจไม่ขาด (ปกติจะ lv.8 จะเล่น 6sen 3academy 2vision) แต่พอได้ emblem มาทำให้เราสามารถลง corki ได้ที่ lv.8 เลย ซึ่งปกติเขาจะเติมกันตอน lv.9 เพื่อ cap board ทั้งหมดนี้ก็เป็นหนึ่งในตัวอย่างของ gameplan สำหรับ Augment นี้ เราสามารถปรับเปลี่ยน gameplan ตาม emblem ที่ได้ มีแนะนำเพิ่มเติมคือคิดว่าหยิบ 2-1 จะเล่นง่ายที่สุด 3-2 พอได้ 4-2 อาจจะต้อง 200IQ หน่อย ค่อนข้างปรับบอร์ดยากหากเลือก Augment นี้มาตอนท้ายเกม",
+      ],
+      img2: "/post3-2.png",
+      img2_desc:
+        "รูปที่ 2: ตัวอย่าง board Heimer ที่ drop 1 sentinel (add corki lv.8)",
+      summary: [
+        "ตอน 2-1 ถ้า spot ยังไม่รู้จะเล่น comp อะไรดี ถ้าเจอ Tower Defense ให้เลือกได้เลย คุ้ม!",
+        "เหมาะกับคนที่ต้องการ win streak ต้นเกม เพราะแต่ละไฟท์มันก็ช่วยทำดาเมจไม่น้อยเลย",
+        "มีความเสี่ยงจะได้ emblem ที่เล่นยาก ลองศึกษาเพิ่มเติมไว้ก่อนจะดีมาก เพื่อรับมือกับการต้องเล่น emblem หรือ comp ที่เราไม่อยากเล่น",
+      ],
+      ref: [
+        "https://www.metatft.com/augments",
+        "https://tactics.tools/team-builder/UGD8dA.BVSW9C.BjCIXQYpEDZva.DhMhGhHuG.DhAbN",
+      ],
+      date: "2ุ6/11/2024",
     },
   ];
 
@@ -92,13 +129,15 @@ const PostDetail: React.FC = () => {
   return (
     <div className="mt-12 min-h-screen mx-auto p-6 max-w-[896px]">
       <div className="flex">
-        <Image
-          src="/ttm.jpg"
-          alt=""
-          height={80}
-          width={80}
-          className="h-[80px]"
-        />
+        <Link href="/">
+          <Image
+            src="/ttm.jpg"
+            alt=""
+            height={80}
+            width={80}
+            style={{ cursor: "pointer" }} // Optional: indicates the image is clickable
+          />
+        </Link>
         <div className="mt-2">
           <Link href="/" className="text-3xl font-extrabold ml-2">
             Tataman
@@ -173,10 +212,7 @@ const PostDetail: React.FC = () => {
         </Link> */}
       </div>
       <div className="mt-12 text-center">
-        <Link
-          href={"/"}
-          className="text-[20px] font-light hover:underline "
-        >
+        <Link href={"/"} className="text-[20px] font-light hover:underline ">
           กลับหน้าหลัก
         </Link>
       </div>

@@ -7,7 +7,15 @@ const Header = () => {
       <div className="container mx-auto max-w-[896px] flex justify-between items-center p-4">
         <div className="">
           <div className="flex">
-            <Image src="/ttm.jpg" alt="" height={80} width={80} />
+            <Link href="/">
+              <Image
+                src="/ttm.jpg"
+                alt=""
+                height={80}
+                width={80}
+                style={{ cursor: "pointer" }} // Optional: indicates the image is clickable
+              />
+            </Link>
             <div className="mt-2">
               <Link href="/" className="text-3xl font-extrabold ml-2">
                 Tataman

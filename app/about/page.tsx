@@ -54,6 +54,15 @@ const About = () => {
         },
       ],
     },
+    {
+      set: "SET 13",
+      events: [
+        {
+          name: "TFT Hexpert Tactician Open Tournament",
+          result: "Qualifier Round - Top 512",
+        },
+      ],
+    },
     // {
     //   set: "SET 13",
     //   events: [
@@ -69,7 +78,15 @@ const About = () => {
     <div className="bg-white min-h-screen p-6  max-w-[896px] mx-auto mt-12">
       <div className="">
         <div className="flex">
-          <Image src="/ttm.jpg" alt="" height={80} width={80} />
+          <Link href="/">
+            <Image
+              src="/ttm.jpg"
+              alt=""
+              height={80}
+              width={80}
+              style={{ cursor: "pointer" }} // Optional: indicates the image is clickable
+            />
+          </Link>
           <div className="mt-2">
             <Link href="/" className="text-3xl font-extrabold ml-2">
               Tataman
@@ -81,8 +98,28 @@ const About = () => {
         </div>
       </div>
       <h1 className="text-[24px] font-black mt-4 mb-2">About Me</h1>
-      <div className="mb-2 text-justify">เริ่มเล่น TFT ตั้งแต่ SET1 ลองเล่นเพราะเบื่อๆ จาก LoL เลยมีมาเล่นสลับกับโหมด rank/aram ผ่านไปช่วงเวลานึงที่เกม LoR เข้า (การ์ดเกมจักรวาล runterra ของ riot) ก็มาจริงจังกับเกม LoR ทั้งพยายามไต่ rank หาทัวร์แข่ง (peak rank lor ไปได้ไกลสุดที่ diamond) จนถึงจุดที่เกม LoR เริ่มพัฒนา pve มากกว่า pvp/competitve ตอนนั้นผมเริ่มเบื่อหรือเครียดจากเกมนั้นบวกกับดูสตรีมเมอร์ต่างๆ ที่เล่น TFT ทำให้อยากลองมาเล่น TFT ดูบ้าง</div>
-      <div className="mb-8 text-justify">Set8 เป็น Set แรกที่เริ่มเล่นจริงจังแต่ยังคงไต่ไปไม่ถึง diamond หลังจากนั้นก็พยายามที่จะพัฒนา skill ในการเล่นอยู่เรื่อยๆ จนสามารถไต่ rank ไปได้ไกลถึง rank Grandmaster ใน Set9 รวมถึงได้แชมป์ tournament community ในช่วงต้น Set10 อีกด้วย นอกจากนี้ยังพยายามที่จะดันตัวเองให้เก่งขึ้นไปอีกโดยได้ลองหาคนโคชชิ่งดู ได้มีประสบการณ์ผ่านการเรียนกับผู้เล่น challenger มาสองคน หลังจากเรียนได้อะไรจากเขาเยอะมากๆ (โดยเฉพาะ logic/วิธีการคิด) ถึงแม้ว่าจะได้เรียนมา/ได้รับการโค้ชมาแล้วจะไม่ได้ทำให้เก่งขึ้นทันทีจนขึ้น top server ได้ ซึ่งต้องนำสิ่งที่ได้เรียนรู้มาหาทางต่อยอดเอาเอง การได้เห็นผู้เล่นที่เก่งกว่าแต่ละคนทำให้ผมมีแรงพลักดันที่จะเรียนรู้เรื่องต่างๆ เกี่ยวกับเกม TFT และไม่หยุดที่จะพัฒนาตัวเอง</div>
+      <div className="mb-2 text-justify">
+        เริ่มเล่น TFT ตั้งแต่ SET1 ลองเล่นเพราะเบื่อๆ จาก LoL
+        เลยมีมาเล่นสลับกับโหมด rank/aram ผ่านไปช่วงเวลานึงที่เกม LoR เข้า
+        (การ์ดเกมจักรวาล runterra ของ riot) ก็มาจริงจังกับเกม LoR ทั้งพยายามไต่
+        rank หาทัวร์แข่ง (peak rank lor ไปได้ไกลสุดที่ diamond) จนถึงจุดที่เกม
+        LoR เริ่มพัฒนา pve มากกว่า pvp/competitve
+        ตอนนั้นผมเริ่มเบื่อหรือเครียดจากเกมนั้นบวกกับดูสตรีมเมอร์ต่างๆ ที่เล่น
+        TFT ทำให้อยากลองมาเล่น TFT ดูบ้าง
+      </div>
+      <div className="mb-8 text-justify">
+        Set8 เป็น Set แรกที่เริ่มเล่นจริงจังแต่ยังคงไต่ไปไม่ถึง diamond
+        หลังจากนั้นก็พยายามที่จะพัฒนา skill ในการเล่นอยู่เรื่อยๆ จนสามารถไต่
+        rank ไปได้ไกลถึง rank Grandmaster ใน Set9 รวมถึงได้แชมป์ tournament
+        community ในช่วงต้น Set10 อีกด้วย
+        นอกจากนี้ยังพยายามที่จะดันตัวเองให้เก่งขึ้นไปอีกโดยได้ลองหาคนโคชชิ่งดู
+        ได้มีประสบการณ์ผ่านการเรียนกับผู้เล่น challenger มาสองคน
+        หลังจากเรียนได้อะไรจากเขาเยอะมากๆ (โดยเฉพาะ logic/วิธีการคิด)
+        ถึงแม้ว่าจะได้เรียนมา/ได้รับการโค้ชมาแล้วจะไม่ได้ทำให้เก่งขึ้นทันทีจนขึ้น
+        top server ได้ ซึ่งต้องนำสิ่งที่ได้เรียนรู้มาหาทางต่อยอดเอาเอง
+        การได้เห็นผู้เล่นที่เก่งกว่าแต่ละคนทำให้ผมมีแรงพลักดันที่จะเรียนรู้เรื่องต่างๆ
+        เกี่ยวกับเกม TFT และไม่หยุดที่จะพัฒนาตัวเอง
+      </div>
       {/* Peak Rank Section */}
       <section className="mb-12">
         <h2 className="text-2xl font-semibold mb-1">Peak Rank</h2>
