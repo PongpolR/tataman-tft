@@ -11,6 +11,7 @@ const About = () => {
     { set: "SET 10", rank: "Master" },
     { set: "SET 11", rank: "Master" },
     { set: "SET 12", rank: "Master" },
+    { set: "SET 13", rank: "Master" },
   ];
 
   const tournaments = [
@@ -60,6 +61,10 @@ const About = () => {
         {
           name: "TFT Hexpert Tactician Open Tournament",
           result: "Qualifier Round - Top 512",
+        },
+        {
+          name: "TFT The Convergence Open Tournament",
+          result: "Qualifier Round - Top 256 (Latest 01/2025)",
         },
       ],
     },
