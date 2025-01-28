@@ -53,6 +53,14 @@ const About = () => {
           name: "TFT Master Of Magic Open Tournament",
           result: "Qualifier Round - Top 1024",
         },
+        {
+          name: "Tacticians Trials II",
+          result: "Qualifier Round - Top 168",
+        },
+        {
+          name: "Tacticians Trials III",
+          result: "Qualifier Round - Top 144",
+        },
       ],
     },
     {
