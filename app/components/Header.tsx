@@ -3,11 +3,11 @@ import Link from "next/link";
 
 const Header = () => {
   return (
-    <header className="bg-white text-slate-800 pt-12">
-      <div className="container mx-auto max-w-[896px] flex justify-between items-center p-4">
+    <header className="bg-white text-slate-800 lg:pt-12">
+      <div className="container lg:mx-auto max-w-[200px] lg:max-w-[896px] flex justify-between items-center p-4">
         <div className="">
           <div className="flex">
-            <Link href="/">
+            <Link href="/" className="invisible lg:visible">
               <Image
                 src="/ttm.jpg"
                 alt=""
@@ -16,7 +16,7 @@ const Header = () => {
                 style={{ cursor: "pointer" }} // Optional: indicates the image is clickable
               />
             </Link>
-            <div className="mt-2">
+            <div className="lg:mt-2">
               <Link href="/" className="text-3xl font-extrabold ml-2">
                 Tataman
               </Link>
@@ -28,11 +28,11 @@ const Header = () => {
         </div>
 
         <nav>
-          <ul className="flex items-center space-x-4">
+          <ul className="flex lg:items-center ml-12 lg:ml-0 space-x-2 lg:space-x-4">
             <li>
               <a
                 href="/resource"
-                className="text-[24px] text-blue-600 font-semibold transition-all duration-300 hover:text-blue-800 hover:underline"
+                className="text-[18px] lg:text-[24px] text-blue-600 font-semibold transition-all duration-300 hover:text-blue-800 hover:underline"
               >
                 Resource
               </a>
@@ -43,7 +43,7 @@ const Header = () => {
             <li>
               <a
                 href="/about"
-                className="text-[24px] text-blue-600 font-semibold transition-all duration-300 hover:text-blue-800 hover:underline"
+                className="text-[18px] lg:text-[24px] text-blue-600 font-semibold transition-all duration-300 hover:text-blue-800 hover:underline"
               >
                 About
               </a>
