@@ -10,6 +10,12 @@ const List: React.FC = () => {
 
   const blogPosts = [
     {
+      id: 4,
+      title: "[RECAP] Tournament The Convergence ผ่านมุมมองของตัวเอง",
+      description: 'บอกเล่าเรื่องราวทั้งหมดเกี่ยวกับการแข่งขันที่ผ่านมาในมุมของตัวเอง',
+      date: "31/01/2025",
+    },
+    {
       id: 3,
       title: "[TIP] แนะนำ Augment Tower Defense",
       description: 'หนึ่งใน Augment สารพัดประโยชน์ที่ได้ทั้ง dummie ตีไกล รวมถึงได้ emblem ติดมาอีกอันด้วยนะ',
