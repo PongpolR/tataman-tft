@@ -105,7 +105,7 @@ const PostDetail: React.FC = () => {
       header: "",
       header_desc: [],
       body: [
-        "เมื่อช่วงกลางปีที่ผ่านมา ผมมีโอกาสได้ลงแข่งขัน TFT The Convergence Open Tournament รอบ Open Qualifier (ลุ้น bypass ด้วย Snapshot ไม่ไหว แต้มมันสูงเกินไปมาก) โดยภาพรวมเป็นหนึ่งใน tournament ที่ผมค่อนข้างจะ happy กับผลงานของตัวเอง ซึ่งใน tour นี้ผมจบเส้นทางที่รอบ 256 คน หรือจะเรียกว่า top256 ก็ว่าได้", "ผมคงไม่เขียนรายละเอียดในแต่ละ game แต่อยากจะพูดถึงภาพรวมในการลงแข่ง tournament ที่มี format ประมาณนี้",
+        "เมื่อช่วงกลางเดือนที่ผ่านมา(มกรา 2568) ผมมีโอกาสได้ลงแข่งขัน TFT The Convergence Open Tournament รอบ Open Qualifier (ลุ้น bypass ด้วย Snapshot ไม่ไหว แต้มมันสูงเกินไปมาก) โดยภาพรวมเป็นหนึ่งใน tournament ที่ผมค่อนข้างจะ happy กับผลงานของตัวเอง ซึ่งใน tour นี้ผมจบเส้นทางที่รอบ 256 คน หรือจะเรียกว่า top256 ก็ว่าได้", "ผมคงไม่เขียนรายละเอียดในแต่ละ game แต่อยากจะพูดถึงภาพรวมในการลงแข่ง tournament ที่มี format ประมาณนี้",
       ],
       img: "/post4-1.png",
       img_desc: "รูปที่ 1: Description Tournament Schedule",
