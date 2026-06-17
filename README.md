@@ -20,17 +20,21 @@ cp .env.local.example .env.local
 npm run dev
 ```
 
-## Supabase setup (ครั้งแรก)
+## Supabase setup (ครั้งแรก — ต้องทำก่อน `npm run dev`)
 
 1. สร้าง project ที่ [supabase.com](https://supabase.com)
-2. รัน SQL จาก [`supabase/schema.sql`](supabase/schema.sql) ใน SQL Editor
-3. สร้าง admin user: Authentication → Users → Add user
-4. คัดลอก Project URL และ anon key ไปใส่ใน `.env.local`
+2. คัดลอก `.env.local.example` เป็น `.env.local` แล้วใส่ URL, anon key, service role key
+3. ใส่ `DATABASE_URL` จาก Dashboard → Settings → Database → Connection string (URI)
+4. สร้าง schema:
+   ```bash
+   npm run setup-db
+   ```
+   (หรือรัน SQL จาก [`supabase/schema.sql`](supabase/schema.sql) ใน SQL Editor แทน)
 5. Seed โพสต์เดิม:
    ```bash
-   # ใส่ SUPABASE_SERVICE_ROLE_KEY ใน .env.local ด้วย
    npm run seed
    ```
+6. สร้าง admin user: Authentication → Users → Add user
 
 ## Admin
 
@@ -52,4 +56,5 @@ npm run dev
 |---------|-------------|
 | `npm run dev` | Local dev server |
 | `npm run build` | Production build |
+| `npm run setup-db` | Apply `supabase/schema.sql` to remote database |
 | `npm run seed` | Seed legacy posts to Supabase |
