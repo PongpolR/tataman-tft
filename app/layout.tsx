@@ -2,14 +2,15 @@ import type { Metadata } from "next";
 import { Noto_Sans_Thai } from "next/font/google";
 import "./globals.css";
 
-const prompt = Noto_Sans_Thai({
-  subsets: ["thai", "latin"], // Ensure Thai subset is included
-  weight: ["100", "200", "300", "400", "500", "700"], // Choose the font weights you need
+const notoSansThai = Noto_Sans_Thai({
+  subsets: ["thai", "latin"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
   title: "Tataman TFT",
-  description: "Tataman TFT Blog",
+  description:
+    "บล็อก TFT จาก Tataman — เทคนิค competitive, tips และ tournament recap",
 };
 
 export default function RootLayout({
@@ -18,14 +19,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html>
-      <head>
-        <link rel="icon" href="/ttm.ico" />
-      </head>
-      <body
-        // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        className={prompt.className}
-      >
+    <html lang="th">
+      <body className={`${notoSansThai.className} min-h-screen antialiased`}>
         {children}
       </body>
     </html>
