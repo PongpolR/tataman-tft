@@ -4,6 +4,7 @@ import {
   calculateReadingTime,
   formatDate,
   getPostBadge,
+  getPostThumbnail,
 } from "@/lib/utils";
 import type { Post } from "@/types/post";
 
@@ -14,7 +15,7 @@ interface FeaturedPostCardProps {
 export default function FeaturedPostCard({ post }: FeaturedPostCardProps) {
   const badge = getPostBadge(post.title);
   const readingTime = calculateReadingTime(post);
-  const thumbnail = post.img || post.img2;
+  const thumbnail = getPostThumbnail(post, "/ttm.jpg") ?? "/ttm.jpg";
 
   return (
     <Link href={`/post/${post.slug}`} className="block">
@@ -43,23 +44,15 @@ export default function FeaturedPostCard({ post }: FeaturedPostCardProps) {
             </span>
           </div>
 
-          {thumbnail ? (
-            <div className="relative aspect-video overflow-hidden border-t border-border md:border-l md:border-t-0">
-              <Image
-                src={thumbnail}
-                alt={post.title}
-                fill
-                className="object-cover transition duration-300 group-hover:scale-[1.02]"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
-          ) : (
-            <div className="hidden items-center justify-center border-t border-border bg-accent/5 md:flex md:border-l md:border-t-0">
-              <span className="font-display text-4xl font-bold text-accent/30">
-                TFT
-              </span>
-            </div>
-          )}
+          <div className="relative aspect-video overflow-hidden border-t border-border md:border-l md:border-t-0">
+            <Image
+              src={thumbnail}
+              alt={post.title}
+              fill
+              className="object-cover transition duration-300 group-hover:scale-[1.02]"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
         </div>
       </article>
     </Link>

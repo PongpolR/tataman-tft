@@ -6,7 +6,7 @@ import type { Post, PostFormData } from "@/types/post";
 
 const POSTS_TAG = "posts";
 const POST_LIST_COLUMNS =
-  "id,slug,title,description,status,published_at,header,header_desc,body,body2,summary,ref,created_at,updated_at";
+  "id,slug,title,description,status,published_at,header,header_desc,body,body2,img,img2,summary,ref,created_at,updated_at";
 
 function mapPost(row: Record<string, unknown>): Post {
   return {

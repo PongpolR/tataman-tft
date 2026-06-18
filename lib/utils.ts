@@ -61,6 +61,15 @@ export function getPostBadge(title: string): string | null {
   return match ? match[1] : null;
 }
 
+export function getPostThumbnail(
+  post: { img: string | null; img2: string | null },
+  fallback?: string
+): string | null {
+  const src = post.img || post.img2;
+  if (src) return src;
+  return fallback ?? null;
+}
+
 export function cn(...classes: (string | false | null | undefined)[]): string {
   return classes.filter(Boolean).join(" ");
 }

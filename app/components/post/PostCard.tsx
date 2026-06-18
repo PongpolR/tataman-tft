@@ -4,6 +4,7 @@ import {
   calculateReadingTime,
   formatDate,
   getPostBadge,
+  getPostThumbnail,
 } from "@/lib/utils";
 import type { Post } from "@/types/post";
 
@@ -15,7 +16,7 @@ interface PostCardProps {
 export default function PostCard({ post, index = 0 }: PostCardProps) {
   const badge = getPostBadge(post.title);
   const readingTime = calculateReadingTime(post);
-  const thumbnail = post.img || post.img2;
+  const thumbnail = getPostThumbnail(post);
 
   return (
     <Link href={`/post/${post.slug}`} className="block">
