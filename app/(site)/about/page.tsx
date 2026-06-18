@@ -80,7 +80,7 @@ export default function AboutPage() {
     <div>
       <h1 className="mb-6 text-2xl font-bold sm:text-3xl">About Me</h1>
 
-      <div className="card-surface-static mb-8 max-w-3xl space-y-4 p-5 text-pretty leading-relaxed text-muted sm:p-6">
+      <div className="card-surface-static mb-8 space-y-4 p-5 text-pretty leading-relaxed text-muted sm:p-6">
         <p>
           เริ่มเล่น TFT ตั้งแต่ SET 1 ลองเล่นเพราะเบื่อๆ จาก LoL
           เลยมีมาเล่นสลับกับโหมด rank/aram

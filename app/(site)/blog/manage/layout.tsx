@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { logoutAction } from "@/app/auth/actions";
+import LogoutButton from "@/app/components/auth/LogoutButton";
 import { requireAdmin } from "@/lib/auth";
 
 export default async function BlogManageLayout({
@@ -33,11 +33,7 @@ export default async function BlogManageLayout({
               ดูบล็อก
             </Link>
           </nav>
-          <form action={logoutAction}>
-            <button type="submit" className="btn-secondary text-xs">
-              ออกจากระบบ
-            </button>
-          </form>
+          <LogoutButton className="btn-secondary text-xs" />
         </div>
       </div>
       <div className="site-container py-8">{children}</div>

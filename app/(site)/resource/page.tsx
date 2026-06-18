@@ -10,17 +10,17 @@ const resources = [
     ],
   },
   {
-    title: "Deep technique / Hidden Comp (On X)",
+    title: "Streamer/Proplayer Recommend",
     items: [
       { name: "khymTFT" },
-      { name: "ClementKChu" },
-      { name: "mindful_one_" },
-      { name: "orgap1" },
+      { name: "BrosephTFT" },
+      { name: "Wasianiverson" },
+      { name: "Upsetmax" },
     ],
   },
   {
     title: "Meta Tierlist",
-    items: [{ name: "TFT Academy" }, { name: "Sologesang" }],
+    items: [ { name: "TFTable", url: "https://www.tftable.cc/en/comps" }, { name: "TFTTIP", url: "https://tftips.app/en/comps" }, { name: "TFT Academy", url: "https://tftacademy.com/tierlist/comps" }, { name: "Sologesang", url: "https://www.metatft.com/pro-comps" }],
   },
   {
     title: "Stat / Tools",

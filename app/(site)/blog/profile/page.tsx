@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { logoutAction } from "@/app/auth/actions";
+import LogoutButton from "@/app/components/auth/LogoutButton";
 import ProfileForm from "@/app/components/blog/ProfileForm";
 import { isAdminUser, requireUser } from "@/lib/auth";
 import { getOrCreateProfile } from "@/lib/profiles";
@@ -22,11 +22,10 @@ export default async function ProfilePage() {
               จัดการโพสต์
             </Link>
           )}
-          <form action={logoutAction} className="w-full sm:w-auto">
-            <button type="submit" className="btn-secondary w-full text-sm sm:w-auto">
-              ออกจากระบบ
-            </button>
-          </form>
+          <LogoutButton
+            formClassName="w-full sm:w-auto"
+            className="btn-secondary w-full text-sm sm:w-auto"
+          />
         </div>
       </div>
 

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { logoutAction } from "@/app/auth/actions";
+import LogoutButton from "@/app/components/auth/LogoutButton";
 
 interface UserMenuProps {
   displayName: string;
@@ -124,14 +124,7 @@ export default function UserMenu({
               </Link>
             )}
             <div className="mt-1 border-t border-border px-2 pb-1 pt-1">
-              <form action={logoutAction}>
-                <button
-                  type="submit"
-                  className="block w-full rounded-md px-3 py-2 text-left text-sm font-medium text-red-400 transition hover:bg-red-500/20"
-                >
-                  ออกจากระบบ
-                </button>
-              </form>
+              <LogoutButton className="block w-full rounded-md px-3 py-2 text-left text-sm font-medium text-red-400 transition hover:bg-red-500/20 disabled:opacity-70" />
             </div>
           </div>
         </div>

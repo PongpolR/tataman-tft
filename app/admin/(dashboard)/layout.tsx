@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { logoutAction } from "@/app/auth/actions";
+import LogoutButton from "@/app/components/auth/LogoutButton";
 
 export default function AdminDashboardLayout({
   children,
@@ -18,11 +18,7 @@ export default function AdminDashboardLayout({
               ดูเว็บ
             </Link>
           </div>
-          <form action={logoutAction}>
-            <button type="submit" className="btn-secondary text-xs">
-              ออกจากระบบ
-            </button>
-          </form>
+          <LogoutButton className="btn-secondary text-xs" />
         </div>
       </header>
       <main className="mx-auto max-w-5xl px-4 py-8">{children}</main>
