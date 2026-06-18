@@ -2,7 +2,7 @@ import HeroSection from "@/app/components/layout/HeroSection";
 import PostList from "@/app/components/post/PostList";
 import { getPublishedPosts } from "@/lib/posts";
 
-export default async function HomePage() {
+export default async function BlogPage() {
   const posts = await getPublishedPosts();
 
   return (

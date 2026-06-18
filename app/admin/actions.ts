@@ -6,26 +6,6 @@ import { formDataToPostPayload } from "@/lib/posts";
 import { createClient } from "@/lib/supabase/server";
 import type { PostFormData } from "@/types/post";
 
-export async function loginAction(formData: FormData) {
-  const email = formData.get("email") as string;
-  const password = formData.get("password") as string;
-
-  const supabase = await createClient();
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
-
-  if (error) {
-    return { error: error.message };
-  }
-
-  redirect("/admin");
-}
-
-export async function logoutAction() {
-  const supabase = await createClient();
-  await supabase.auth.signOut();
-  redirect("/admin/login");
-}
-
 export async function createPostAction(data: PostFormData) {
   const supabase = await createClient();
   const payload = formDataToPostPayload(data);
@@ -38,7 +18,7 @@ export async function createPostAction(data: PostFormData) {
 
   if (error) return { error: error.message };
 
-  revalidatePath("/");
+  revalidatePath("/blog");
   revalidatePath("/admin");
   redirect(`/admin/posts/${post.id}/edit`);
 }
@@ -60,7 +40,7 @@ export async function updatePostAction(id: string, data: PostFormData) {
 
   if (error) return { error: error.message };
 
-  revalidatePath("/");
+  revalidatePath("/blog");
   revalidatePath(`/post/${data.slug}`);
   revalidatePath("/admin");
   return { success: true };
@@ -72,7 +52,7 @@ export async function deletePostAction(id: string) {
 
   if (error) return { error: error.message };
 
-  revalidatePath("/");
+  revalidatePath("/blog");
   revalidatePath("/admin");
   redirect("/admin");
 }

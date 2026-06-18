@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { logoutAction } from "../actions";
+import { logoutAction } from "@/app/auth/actions";
 
 export default function AdminDashboardLayout({
   children,
@@ -14,7 +14,7 @@ export default function AdminDashboardLayout({
             <Link href="/admin" className="text-lg font-bold text-accent">
               Tataman Admin
             </Link>
-            <Link href="/" className="text-sm text-muted hover:text-foreground">
+            <Link href="/blog" className="text-sm text-muted hover:text-foreground">
               ดูเว็บ
             </Link>
           </div>

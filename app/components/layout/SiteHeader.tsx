@@ -10,7 +10,7 @@ export default function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/90 backdrop-blur-md">
       <div className="site-container flex items-center justify-between py-4">
-        <Link href="/" className="group flex items-center gap-3">
+        <Link href="/blog" className="group flex items-center gap-3">
           <Image
             src="/ttm.jpg"
             alt="Tataman"

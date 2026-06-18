@@ -36,11 +36,14 @@ npm run dev
    ```
 6. สร้าง admin user: Authentication → Users → Add user
 
-## Admin
+## Auth & URLs
 
-- Login: `/admin/login`
-- Dashboard: `/admin`
-- สร้าง/แก้โพสต์ได้เฉพาะ admin ที่ login แล้ว
+- Login: `/login` (หน้า `/` redirect มาที่นี่)
+- Register: `/register`
+- Blog (guest หรือ login): `/blog`
+- Dashboard (จัดการโพสต์): `/admin`
+- สร้าง/แก้โพสต์ได้เฉพาะ user ที่ login แล้ว
+- Guest สามารถอ่าน blog, about, resource ได้โดยไม่ต้องสมัคร
 
 ## Deploy (Netlify)
 
