@@ -116,7 +116,8 @@ body {
   }
 
   .skeleton-block {
-    @apply animate-pulse rounded bg-border/40;
+    @apply animate-pulse rounded;
+    background-color: color-mix(in srgb, var(--border) 40%, transparent);
   }
 }
 
