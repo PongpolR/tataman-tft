@@ -85,7 +85,7 @@ export async function updateSession(request: NextRequest) {
     return supabaseResponse;
   }
 
-  if (isBlogManageRoute) {
+  if (isBlogManageRoute(pathname)) {
     if (!user) {
       return redirectTo(request, "/login");
     }
@@ -95,7 +95,7 @@ export async function updateSession(request: NextRequest) {
     return supabaseResponse;
   }
 
-  if (isBlogProfileRoute) {
+  if (isBlogProfileRoute(pathname)) {
     if (!user) {
       return redirectTo(request, "/login");
     }
