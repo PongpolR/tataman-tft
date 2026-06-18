@@ -16,7 +16,7 @@ export default function PostCard({ post }: PostCardProps) {
 
   return (
     <Link href={`/post/${post.slug}`} className="block">
-      <article className="card-surface group p-5 sm:p-6">
+      <article className="card-surface-interactive group p-5 sm:p-6">
         <div className="mb-3 flex flex-wrap items-center gap-2">
           {badge === "TIP" && <span className="badge-tip">TIP</span>}
           {badge === "RECAP" && <span className="badge-recap">RECAP</span>}

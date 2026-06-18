@@ -35,7 +35,7 @@ export default function LoginForm() {
     <div className="relative w-full max-w-lg">
       <div className="pointer-events-none absolute -inset-px rounded-2xl bg-gradient-to-br from-accent/20 via-transparent to-accent-muted/20" />
 
-      <div className="card-surface animate-fade-in-up relative space-y-6 rounded-2xl p-8 shadow-xl shadow-black/10 dark:shadow-black/20 sm:p-10">
+      <div className="card-surface-static animate-fade-in-up relative space-y-6 rounded-2xl p-8 shadow-xl shadow-black/10 dark:shadow-black/20 sm:p-10">
         <div className="flex flex-col items-center text-center">
           <Image
             src="/ttm.jpg"
@@ -103,7 +103,7 @@ export default function LoginForm() {
             <div className="w-full border-t border-border" />
           </div>
           <div className="relative flex justify-center text-xs">
-            <span className="bg-card px-3 text-muted">หรือ</span>
+            <span className="bg-[var(--card)] px-3 text-muted">หรือ</span>
           </div>
         </div>
 

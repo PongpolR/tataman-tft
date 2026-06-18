@@ -30,7 +30,7 @@ export default function RegisterForm() {
 
       <form
         onSubmit={handleSubmit}
-        className="card-surface animate-fade-in-up relative space-y-6 rounded-2xl p-8 shadow-xl shadow-black/10 dark:shadow-black/20 sm:p-10"
+        className="card-surface-static animate-fade-in-up relative space-y-6 rounded-2xl p-8 shadow-xl shadow-black/10 dark:shadow-black/20 sm:p-10"
       >
         <div className="flex flex-col items-center text-center">
           <Image

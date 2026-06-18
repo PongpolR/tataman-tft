@@ -5,6 +5,7 @@ import { useRef, useState, useTransition } from "react";
 import { addCommentAction, deleteCommentAction } from "@/app/blog/actions";
 import LoadingButton from "@/app/components/ui/LoadingButton";
 import TrashIcon from "@/app/components/ui/TrashIcon";
+import UserAvatar from "@/app/components/ui/UserAvatar";
 import { formatDateTime } from "@/lib/utils";
 import type { Comment } from "@/types/comment";
 
@@ -104,37 +105,46 @@ export default function CommentSection({
         {comments.length === 0 ? (
           <p className="text-sm text-muted">ยังไม่มีความคิดเห็น</p>
         ) : (
-          comments.map((comment) => (
+          comments.map((comment) => {
+            const displayName = comment.author?.display_name ?? "ผู้ใช้";
+            return (
             <article
               key={comment.id}
               className="rounded-lg border border-border bg-card/50 px-4 py-3"
             >
-              <div className="mb-1.5 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-2">
-                <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
-                  <span className="font-medium">
-                    {comment.author?.display_name ?? "ผู้ใช้"}
-                  </span>
-                  <span className="text-xs text-muted">
-                    {formatDateTime(comment.created_at)}
-                  </span>
+              <div className="flex items-start gap-3">
+                <UserAvatar
+                  name={displayName}
+                  avatarUrl={comment.author?.avatar_url ?? null}
+                />
+                <div className="min-w-0 flex-1">
+                  <div className="mb-1.5 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-2">
+                    <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+                      <span className="font-medium">{displayName}</span>
+                      <span className="text-xs text-muted">
+                        {formatDateTime(comment.created_at)}
+                      </span>
+                    </div>
+                    {currentUserId === comment.user_id && (
+                      <button
+                        type="button"
+                        onClick={() => handleDelete(comment.id)}
+                        disabled={isPending}
+                        aria-label="ลบความคิดเห็น"
+                        className="self-start rounded-md p-1.5 text-red-400 transition hover:bg-red-500/10 hover:text-red-300 sm:self-center"
+                      >
+                        <TrashIcon />
+                      </button>
+                    )}
+                  </div>
+                  <p className="whitespace-pre-wrap text-sm leading-relaxed">
+                    {comment.content}
+                  </p>
                 </div>
-                {currentUserId === comment.user_id && (
-                  <button
-                    type="button"
-                    onClick={() => handleDelete(comment.id)}
-                    disabled={isPending}
-                    aria-label="ลบความคิดเห็น"
-                    className="self-start rounded-md p-1.5 text-red-400 transition hover:bg-red-500/10 hover:text-red-300 sm:self-center"
-                  >
-                    <TrashIcon />
-                  </button>
-                )}
               </div>
-              <p className="whitespace-pre-wrap text-sm leading-relaxed">
-                {comment.content}
-              </p>
             </article>
-          ))
+            );
+          })
         )}
       </div>
     </section>

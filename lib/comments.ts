@@ -3,7 +3,11 @@ import type { Comment } from "@/types/comment";
 
 function mapComment(
   row: Record<string, unknown>,
-  profile?: { display_name: string; email: string } | null
+  profile?: {
+    display_name: string;
+    email: string;
+    avatar_url: string | null;
+  } | null
 ): Comment {
   return {
     id: row.id as string,
@@ -16,6 +20,7 @@ function mapComment(
       ? {
           display_name: profile.display_name || profile.email.split("@")[0],
           email: profile.email,
+          avatar_url: profile.avatar_url,
         }
       : undefined,
   };
@@ -39,7 +44,7 @@ export async function getCommentsByPostId(postId: string): Promise<Comment[]> {
   const userIds = [...new Set(data.map((c) => c.user_id as string))];
   const { data: profiles, error: profileError } = await supabase
     .from("profiles")
-    .select("id, display_name, email")
+    .select("id, display_name, email, avatar_url")
     .in("id", userIds);
 
   if (profileError) {
@@ -49,7 +54,7 @@ export async function getCommentsByPostId(postId: string): Promise<Comment[]> {
   const profileMap = new Map(
     (profiles ?? []).map((p) => [
       p.id as string,
-      p as { display_name: string; email: string },
+      p as { display_name: string; email: string; avatar_url: string | null },
     ])
   );
 

@@ -8,5 +8,6 @@ export interface Comment {
   author?: {
     display_name: string;
     email: string;
+    avatar_url: string | null;
   };
 }

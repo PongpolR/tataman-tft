@@ -27,7 +27,7 @@ export default async function AdminDashboardPage() {
             <Link
               key={post.id}
               href={`/admin/posts/${post.id}/edit`}
-              className="card-surface flex items-center justify-between gap-4 p-4"
+              className="card-surface-interactive flex items-center justify-between gap-4 p-4"
             >
               <div className="min-w-0 flex-1">
                 <p className="truncate font-medium">{post.title}</p>
