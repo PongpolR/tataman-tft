@@ -15,3 +15,12 @@ export function loadEnv() {
     config({ path: envLocalPath, override: true });
   }
 }
+
+export function requireEnv(name: string): string {
+  const value = process.env[name];
+  if (!value) {
+    console.error(`Missing ${name} in .env.local or .env`);
+    process.exit(1);
+  }
+  return value;
+}
