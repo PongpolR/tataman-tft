@@ -8,6 +8,7 @@ import {
   deletePostAction,
   updatePostAction,
 } from "@/app/blog/actions";
+import LoadingButton from "@/app/components/ui/LoadingButton";
 import { slugify } from "@/lib/utils";
 import type { Post, PostFormData, PostStatus } from "@/types/post";
 
@@ -337,22 +338,23 @@ export default function PostForm({ post }: PostFormProps) {
       </CollapsibleSection>
 
       <div className="flex flex-wrap gap-3 pt-2">
-        <button
+        <LoadingButton
           type="button"
-          disabled={isPending}
+          variant="secondary"
+          loading={isPending}
+          loadingText="กำลังบันทึก..."
           onClick={() => submit("draft")}
-          className="btn-secondary"
         >
           บันทึก (ซ่อน)
-        </button>
-        <button
+        </LoadingButton>
+        <LoadingButton
           type="button"
-          disabled={isPending}
+          loading={isPending}
+          loadingText="กำลังบันทึก..."
           onClick={() => submit("published")}
-          className="btn-primary"
         >
           บันทึก & เผยแพร่
-        </button>
+        </LoadingButton>
         {post && (
           <>
             <Link

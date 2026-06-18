@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import ThemeToggle from "@/app/components/layout/ThemeToggle";
 import { getCurrentUser, isAdminUser } from "@/lib/auth";
 
 const navLinks = [
@@ -31,6 +32,7 @@ export default async function SiteHeader() {
         </Link>
 
         <nav className="flex items-center gap-1 sm:gap-2">
+          <ThemeToggle />
           {navLinks.map((link) => (
             <Link
               key={link.href}

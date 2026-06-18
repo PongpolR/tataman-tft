@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { guestAction, loginAction } from "@/app/auth/actions";
+import LoadingButton from "@/app/components/ui/LoadingButton";
 
 export default function LoginForm() {
   const [error, setError] = useState<string | null>(null);
@@ -34,7 +35,7 @@ export default function LoginForm() {
     <div className="relative w-full max-w-lg">
       <div className="pointer-events-none absolute -inset-px rounded-2xl bg-gradient-to-br from-accent/20 via-transparent to-accent-muted/20" />
 
-      <div className="card-surface relative space-y-6 rounded-2xl p-8 shadow-xl shadow-black/20 sm:p-10">
+      <div className="card-surface animate-fade-in-up relative space-y-6 rounded-2xl p-8 shadow-xl shadow-black/10 dark:shadow-black/20 sm:p-10">
         <div className="flex flex-col items-center text-center">
           <Image
             src="/ttm.jpg"
@@ -80,13 +81,14 @@ export default function LoginForm() {
             />
           </div>
 
-          <button
+          <LoadingButton
             type="submit"
-            disabled={loading}
-            className="btn-primary w-full py-2.5 text-base"
+            loading={loading}
+            loadingText="กำลังเข้าสู่ระบบ..."
+            className="w-full py-2.5 text-base"
           >
-            {loading ? "กำลังเข้าสู่ระบบ..." : "เข้าสู่ระบบ"}
-          </button>
+            เข้าสู่ระบบ
+          </LoadingButton>
         </form>
 
         <p className="text-center text-sm text-muted">
@@ -105,14 +107,16 @@ export default function LoginForm() {
           </div>
         </div>
 
-        <button
+        <LoadingButton
           type="button"
+          variant="secondary"
+          loading={guestLoading}
+          loadingText="กำลังเข้าใช้งาน..."
           onClick={handleGuest}
-          disabled={guestLoading}
-          className="btn-secondary w-full py-2.5"
+          className="w-full py-2.5"
         >
-          {guestLoading ? "กำลังเข้าใช้งาน..." : "เข้าใช้งานแบบ Guest"}
-        </button>
+          เข้าใช้งานแบบ Guest
+        </LoadingButton>
       </div>
     </div>
   );

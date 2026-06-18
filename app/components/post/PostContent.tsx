@@ -10,7 +10,7 @@ export default function PostContent({ post }: PostContentProps) {
   const readingTime = calculateReadingTime(post);
 
   return (
-    <article className="prose-tft">
+    <article className="prose-tft animate-fade-in-up">
       <header className="mb-8 border-b border-border pb-6">
         <h1 className="mb-3 text-2xl font-bold leading-tight sm:text-3xl">
           {post.title}

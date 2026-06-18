@@ -1,6 +1,6 @@
 export default function HeroSection() {
   return (
-    <section className="relative mb-12 overflow-hidden rounded-2xl border border-border bg-card p-6 sm:p-10">
+    <section className="animate-fade-in-up relative mb-12 overflow-hidden rounded-2xl border border-border bg-card p-6 sm:p-10">
       <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-accent/10 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-accent-muted/10 blur-3xl" />
 

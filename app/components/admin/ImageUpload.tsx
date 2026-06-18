@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { uploadImageAction } from "@/app/blog/actions";
+import Spinner from "@/app/components/ui/Spinner";
 
 interface ImageUploadProps {
   label: string;
@@ -45,7 +46,8 @@ export default function ImageUpload({ label, value, onChange }: ImageUploadProps
         className="input-field"
       />
       <div className="flex items-center gap-3">
-        <label className="btn-secondary cursor-pointer text-xs">
+        <label className="btn-secondary inline-flex cursor-pointer items-center gap-2 text-xs">
+          {uploading && <Spinner size="sm" />}
           {uploading ? "กำลังอัปโหลด..." : "อัปโหลดรูป"}
           <input
             type="file"

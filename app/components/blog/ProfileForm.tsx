@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { updateProfileAction } from "@/app/blog/actions";
+import LoadingButton from "@/app/components/ui/LoadingButton";
 import type { Profile } from "@/types/profile";
 
 interface ProfileFormProps {
@@ -72,9 +73,9 @@ export default function ProfileForm({ profile, isAdmin }: ProfileFormProps) {
         </p>
       </div>
 
-      <button type="submit" disabled={isPending} className="btn-primary">
-        {isPending ? "กำลังบันทึก..." : "บันทึกโปรไฟล์"}
-      </button>
+      <LoadingButton type="submit" loading={isPending} loadingText="กำลังบันทึก...">
+        บันทึกโปรไฟล์
+      </LoadingButton>
     </form>
   );
 }

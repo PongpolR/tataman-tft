@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, useTransition } from "react";
 import { addCommentAction, deleteCommentAction } from "@/app/blog/actions";
+import LoadingButton from "@/app/components/ui/LoadingButton";
 import { formatDate } from "@/lib/utils";
 import type { Comment } from "@/types/comment";
 
@@ -53,7 +54,7 @@ export default function CommentSection({
   }
 
   return (
-    <section className="mt-12 border-t border-border pt-8">
+    <section className="animate-fade-in-up mt-12 border-t border-border pt-8">
       <h2 className="mb-6 text-xl font-bold">
         ความคิดเห็น ({comments.length})
       </h2>
@@ -70,13 +71,14 @@ export default function CommentSection({
             required
           />
           {message && <p className="text-sm text-muted">{message}</p>}
-          <button
+          <LoadingButton
             type="submit"
-            disabled={isPending || !content.trim()}
-            className="btn-primary"
+            loading={isPending}
+            loadingText="กำลังส่ง..."
+            disabled={!content.trim()}
           >
-            {isPending ? "กำลังส่ง..." : "ส่งความคิดเห็น"}
-          </button>
+            ส่งความคิดเห็น
+          </LoadingButton>
         </form>
       ) : (
         <p className="mb-8 text-sm text-muted">

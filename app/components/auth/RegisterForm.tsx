@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { registerAction } from "@/app/auth/actions";
+import LoadingButton from "@/app/components/ui/LoadingButton";
 
 export default function RegisterForm() {
   const [error, setError] = useState<string | null>(null);
@@ -34,7 +35,7 @@ export default function RegisterForm() {
 
       <form
         onSubmit={handleSubmit}
-        className="card-surface relative space-y-6 rounded-2xl p-8 shadow-xl shadow-black/20 sm:p-10"
+        className="card-surface animate-fade-in-up relative space-y-6 rounded-2xl p-8 shadow-xl shadow-black/10 dark:shadow-black/20 sm:p-10"
       >
         <div className="flex flex-col items-center text-center">
           <Image
@@ -99,9 +100,14 @@ export default function RegisterForm() {
           </div>
         </div>
 
-        <button type="submit" disabled={loading} className="btn-primary w-full py-2.5 text-base">
-          {loading ? "กำลังสมัคร..." : "สมัครสมาชิก"}
-        </button>
+        <LoadingButton
+          type="submit"
+          loading={loading}
+          loadingText="กำลังสมัคร..."
+          className="w-full py-2.5 text-base"
+        >
+          สมัครสมาชิก
+        </LoadingButton>
 
         <p className="text-center text-sm text-muted">
           มีบัญชีแล้ว?{" "}

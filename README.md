@@ -53,6 +53,18 @@ npm run dev
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 3. Trigger deploy
 
+### Schema changes on production
+
+Deploy บน Netlify **ไม่ได้รัน** `npm run setup-db` อัตโนมัติ — ถ้า feature ใหม่เพิ่มตารางใน DB ต้อง apply แยกบน production:
+
+1. เปิด Supabase Dashboard → SQL Editor (production project)
+2. รัน migration ที่เกี่ยวข้องจาก [`supabase/migrations/`](supabase/migrations/)  
+   เช่น [`001_comments.sql`](supabase/migrations/001_comments.sql) สำหรับตาราง comments
+3. ตรวจใน Table Editor ว่าตารางถูกสร้างแล้ว
+4. ถ้ายังเห็น schema cache error → Settings → API → Reload schema
+
+ทางเลือก: ตั้ง `DATABASE_URL` ของ prod แล้วรัน `npm run setup-db`
+
 ## Scripts
 
 | Command | Description |
