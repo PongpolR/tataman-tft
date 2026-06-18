@@ -182,4 +182,9 @@ body {
   .card-surface:hover {
     animation: none;
   }
+
+  .animate-spin-fast {
+    animation-duration: 0.5s !important;
+    animation-iteration-count: infinite !important;
+  }
 }

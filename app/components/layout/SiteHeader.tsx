@@ -38,14 +38,6 @@ export default async function SiteHeader() {
         </Link>
 
         <div className="flex items-center gap-1 sm:gap-2">
-          {user && profile && (
-            <UserMenu
-              displayName={profile.display_name || profile.email.split("@")[0]}
-              avatarUrl={profile.avatar_url}
-              isAdmin={isAdmin}
-            />
-          )}
-
           <nav className="hidden items-center gap-1 md:flex md:gap-2">
             <ThemeToggle />
             {navLinks.map((link) => (
@@ -75,6 +67,14 @@ export default async function SiteHeader() {
               </Link>
             )}
           </nav>
+
+          {user && profile && (
+            <UserMenu
+              displayName={profile.display_name || profile.email.split("@")[0]}
+              avatarUrl={profile.avatar_url}
+              isAdmin={isAdmin}
+            />
+          )}
 
           <MobileNav isLoggedIn={!!user} isAdmin={isAdmin} />
         </div>

@@ -2,6 +2,7 @@
 
 import { useTransition } from "react";
 import { togglePostStatusAction } from "@/app/blog/actions";
+import Spinner from "@/app/components/ui/Spinner";
 import type { PostStatus } from "@/types/post";
 
 interface PostStatusToggleProps {
@@ -37,11 +38,15 @@ export default function PostStatusToggle({
       } disabled:opacity-50`}
       title={isPublished ? "คลิกเพื่อซ่อนโพสต์" : "คลิกเพื่อเผยแพร่"}
     >
-      {isPending
-        ? "..."
-        : isPublished
-          ? "Published"
-          : "Hidden"}
+      {isPending ? (
+        <span className="inline-flex items-center">
+          <Spinner size="sm" />
+        </span>
+      ) : isPublished ? (
+        "Published"
+      ) : (
+        "Hidden"
+      )}
     </button>
   );
 }

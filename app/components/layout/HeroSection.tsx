@@ -9,7 +9,7 @@ export default function HeroSection() {
         <span className="text-accent">TFT</span> ของคุณแล้ว – มาเริ่มกันเลย!
       </h1>
 
-      <p className="relative max-w-2xl text-justify leading-relaxed text-muted">
+      <p className="relative max-w-2xl text-pretty leading-relaxed text-muted">
         ผมตาต้านะครับ เล่นเกม TFT (Teamfight Tactic) เป็นหลัก
         ต้องการที่จะแบ่งปันข่าวสาร และเทคนิคต่างๆ เกี่ยวกับเกมเท่าที่ทราบ
         สามารถอ่านได้ทั้งผู้เล่นใหม่ และผู้เล่นเก่า โดย blog
