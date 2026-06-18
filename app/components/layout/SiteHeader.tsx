@@ -1,23 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
-import MobileNav from "@/app/components/layout/MobileNav";
+import { Suspense } from "react";
+import HeaderAuth from "@/app/components/layout/HeaderAuth";
+import HeaderAuthSkeleton from "@/app/components/layout/HeaderAuthSkeleton";
 import ThemeToggle from "@/app/components/layout/ThemeToggle";
-import UserMenu from "@/app/components/layout/UserMenu";
-import { getCurrentUser, isAdminUser } from "@/lib/auth";
-import { getOrCreateProfile } from "@/lib/profiles";
 
 const navLinks = [
   { href: "/resource", label: "Resource" },
   { href: "/about", label: "About" },
 ];
 
-export default async function SiteHeader() {
-  const user = await getCurrentUser();
-  const isAdmin = isAdminUser(user);
-  const profile = user
-    ? await getOrCreateProfile(user.id, user.email ?? "")
-    : null;
-
+export default function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/90 backdrop-blur-md">
       <div className="site-container flex h-14 items-center justify-between sm:h-16">
@@ -49,34 +42,11 @@ export default async function SiteHeader() {
                 {link.label}
               </Link>
             ))}
-            {user ? (
-              isAdmin && (
-                <Link
-                  href="/blog/manage"
-                  className="rounded-lg px-3 py-2 text-sm font-medium text-muted transition hover:bg-card hover:text-foreground"
-                >
-                  จัดการโพสต์
-                </Link>
-              )
-            ) : (
-              <Link
-                href="/login"
-                className="rounded-lg px-3 py-2 text-sm font-medium text-accent transition hover:bg-card"
-              >
-                เข้าสู่ระบบ
-              </Link>
-            )}
           </nav>
 
-          {user && profile && (
-            <UserMenu
-              displayName={profile.display_name || profile.email.split("@")[0]}
-              avatarUrl={profile.avatar_url}
-              isAdmin={isAdmin}
-            />
-          )}
-
-          <MobileNav isLoggedIn={!!user} isAdmin={isAdmin} />
+          <Suspense fallback={<HeaderAuthSkeleton />}>
+            <HeaderAuth />
+          </Suspense>
         </div>
       </div>
     </header>

@@ -1,6 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
-import { isAdminEmail } from "@/lib/auth";
+import { isAdminEmail } from "@/lib/admin";
 
 export const GUEST_COOKIE = "guest";
 

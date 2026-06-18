@@ -32,6 +32,8 @@ const resources = [
   },
 ];
 
+export const dynamic = "force-static";
+
 export default function ResourcePage() {
   return (
     <div>

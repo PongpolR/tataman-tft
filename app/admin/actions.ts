@@ -1,10 +1,15 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
-import { formDataToPostPayload } from "@/lib/posts";
+import { formDataToPostPayload, POSTS_TAG } from "@/lib/posts";
 import { createClient } from "@/lib/supabase/server";
 import type { PostFormData } from "@/types/post";
+
+function revalidatePosts(slug?: string) {
+  revalidateTag(POSTS_TAG);
+  if (slug) revalidateTag(`post-${slug}`);
+}
 
 export async function createPostAction(data: PostFormData) {
   const supabase = await createClient();
@@ -18,6 +23,7 @@ export async function createPostAction(data: PostFormData) {
 
   if (error) return { error: error.message };
 
+  revalidatePosts();
   revalidatePath("/blog");
   revalidatePath("/admin");
   redirect(`/admin/posts/${post.id}/edit`);
@@ -40,6 +46,7 @@ export async function updatePostAction(id: string, data: PostFormData) {
 
   if (error) return { error: error.message };
 
+  revalidatePosts(data.slug);
   revalidatePath("/blog");
   revalidatePath(`/post/${data.slug}`);
   revalidatePath("/admin");
@@ -52,6 +59,7 @@ export async function deletePostAction(id: string) {
 
   if (error) return { error: error.message };
 
+  revalidatePosts();
   revalidatePath("/blog");
   revalidatePath("/admin");
   redirect("/admin");

@@ -26,8 +26,10 @@ export default async function PostPage({ params }: PageProps) {
 
   if (!post) notFound();
 
-  const user = await getCurrentUser();
-  const comments = await getCommentsByPostId(post.id);
+  const [user, comments] = await Promise.all([
+    getCurrentUser(),
+    getCommentsByPostId(post.id),
+  ]);
 
   return (
     <>

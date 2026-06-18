@@ -16,7 +16,7 @@ export async function getProfile(userId: string): Promise<Profile | null> {
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("profiles")
-    .select("*")
+    .select("id,email,display_name,avatar_url,created_at,updated_at")
     .eq("id", userId)
     .single();
 
@@ -39,7 +39,7 @@ export async function getOrCreateProfile(
       email,
       display_name: email.split("@")[0],
     })
-    .select("*")
+    .select("id,email,display_name,avatar_url,created_at,updated_at")
     .single();
 
   if (error || !data) {

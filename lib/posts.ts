@@ -1,5 +1,12 @@
+import { unstable_cache } from "next/cache";
+import { cache } from "react";
+import { createPublicClient } from "@/lib/supabase/public";
 import { createClient } from "@/lib/supabase/server";
 import type { Post, PostFormData } from "@/types/post";
+
+const POSTS_TAG = "posts";
+const POST_LIST_COLUMNS =
+  "id,slug,title,description,status,published_at,header,header_desc,body,body2,summary,ref,created_at,updated_at";
 
 function mapPost(row: Record<string, unknown>): Post {
   return {
@@ -19,16 +26,16 @@ function mapPost(row: Record<string, unknown>): Post {
     img2_desc: (row.img2_desc as string) ?? "",
     summary: (row.summary as string[]) ?? [],
     ref: (row.ref as string[]) ?? [],
-    created_at: row.created_at as string,
-    updated_at: row.updated_at as string,
+    created_at: (row.created_at as string) ?? "",
+    updated_at: (row.updated_at as string) ?? "",
   };
 }
 
-export async function getPublishedPosts(): Promise<Post[]> {
-  const supabase = await createClient();
+async function fetchPublishedPosts(): Promise<Post[]> {
+  const supabase = createPublicClient();
   const { data, error } = await supabase
     .from("posts")
-    .select("*")
+    .select(POST_LIST_COLUMNS)
     .eq("status", "published")
     .order("published_at", { ascending: false });
 
@@ -40,8 +47,8 @@ export async function getPublishedPosts(): Promise<Post[]> {
   return (data ?? []).map(mapPost);
 }
 
-export async function getPostBySlug(slug: string): Promise<Post | null> {
-  const supabase = await createClient();
+async function fetchPostBySlug(slug: string): Promise<Post | null> {
+  const supabase = createPublicClient();
   const { data, error } = await supabase
     .from("posts")
     .select("*")
@@ -52,6 +59,28 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   if (error || !data) return null;
   return mapPost(data);
 }
+
+const getCachedPublishedPosts = unstable_cache(
+  fetchPublishedPosts,
+  ["published-posts"],
+  { revalidate: 60, tags: [POSTS_TAG] }
+);
+
+const getCachedPostBySlug = (slug: string) =>
+  unstable_cache(() => fetchPostBySlug(slug), ["post-by-slug", slug], {
+    revalidate: 60,
+    tags: [POSTS_TAG, `post-${slug}`],
+  })();
+
+export const getPublishedPosts = cache(async (): Promise<Post[]> => {
+  return getCachedPublishedPosts();
+});
+
+export const getPostBySlug = cache(
+  async (slug: string): Promise<Post | null> => {
+    return getCachedPostBySlug(slug);
+  }
+);
 
 export async function getAllPosts(): Promise<Post[]> {
   const supabase = await createClient();
@@ -101,3 +130,5 @@ export function formDataToPostPayload(data: PostFormData) {
     updated_at: new Date().toISOString(),
   };
 }
+
+export { POSTS_TAG };

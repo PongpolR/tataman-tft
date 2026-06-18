@@ -1,24 +1,18 @@
 import { redirect } from "next/navigation";
+import { cache } from "react";
+import { isAdminUser } from "@/lib/admin";
 import { createClient } from "@/lib/supabase/server";
 import type { User } from "@supabase/supabase-js";
 
-export const ADMIN_EMAIL = "pongpol.yy55@gmail.com";
+export { ADMIN_EMAIL, isAdminEmail, isAdminUser } from "@/lib/admin";
 
-export function isAdminEmail(email: string | undefined | null): boolean {
-  return email?.toLowerCase() === ADMIN_EMAIL.toLowerCase();
-}
-
-export function isAdminUser(user: User | null | undefined): boolean {
-  return isAdminEmail(user?.email);
-}
-
-export async function getCurrentUser(): Promise<User | null> {
+export const getCurrentUser = cache(async (): Promise<User | null> => {
   const supabase = await createClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
   return user;
-}
+});
 
 export async function requireUser(): Promise<User> {
   const user = await getCurrentUser();
