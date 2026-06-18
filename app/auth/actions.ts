@@ -3,6 +3,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { isAdminEmail } from "@/lib/auth";
+import { getOrCreateProfile } from "@/lib/profiles";
 import { GUEST_COOKIE } from "@/lib/supabase/middleware";
 import { createClient } from "@/lib/supabase/server";
 
@@ -24,6 +25,13 @@ export async function loginAction(formData: FormData) {
 
   if (error) {
     return { error: error.message };
+  }
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (user) {
+    await getOrCreateProfile(user.id, user.email ?? email);
   }
 
   const cookieStore = await cookies();
@@ -51,6 +59,9 @@ export async function registerAction(formData: FormData) {
   if (data.session) {
     const cookieStore = await cookies();
     cookieStore.delete(GUEST_COOKIE);
+    if (data.user) {
+      await getOrCreateProfile(data.user.id, data.user.email ?? email);
+    }
     redirectAfterLogin(email);
   }
 

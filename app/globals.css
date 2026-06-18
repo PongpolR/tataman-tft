@@ -79,6 +79,10 @@ body {
     transform: scale(0.98);
   }
 
+  .card-surface-static {
+    @apply rounded-xl border border-[var(--border)] bg-[var(--card)];
+  }
+
   .animate-fade-in-up {
     animation: fade-in-up 0.35s ease-out both;
   }
@@ -162,5 +166,20 @@ body {
   ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .card-surface:hover {
+    animation: none;
   }
 }

@@ -11,19 +11,19 @@ export default async function ProfilePage() {
 
   return (
     <div className="mx-auto max-w-xl">
-      <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
+      <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
         <div>
           <h1 className="text-2xl font-bold">โปรไฟล์</h1>
           <p className="mt-1 text-sm text-muted">จัดการข้อมูลบัญชีของคุณ</p>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
           {isAdmin && (
-            <Link href="/blog/manage" className="btn-secondary text-sm">
+            <Link href="/blog/manage" className="btn-secondary w-full text-center text-sm sm:w-auto">
               จัดการโพสต์
             </Link>
           )}
-          <form action={logoutAction}>
-            <button type="submit" className="btn-secondary text-sm">
+          <form action={logoutAction} className="w-full sm:w-auto">
+            <button type="submit" className="btn-secondary w-full text-sm sm:w-auto">
               ออกจากระบบ
             </button>
           </form>

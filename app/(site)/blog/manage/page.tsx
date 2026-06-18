@@ -15,13 +15,13 @@ export default async function BlogManagePage() {
             สร้าง แก้ไข และเลือกซ่อนหรือเผยแพร่โพสต์
           </p>
         </div>
-        <Link href="/blog/manage/posts/new" className="btn-primary">
+        <Link href="/blog/manage/posts/new" className="btn-primary w-full sm:w-auto">
           + สร้างโพสต์ใหม่
         </Link>
       </div>
 
       {posts.length === 0 ? (
-        <div className="card-surface p-8 text-center text-muted">
+        <div className="card-surface-static p-8 text-center text-muted">
           ยังไม่มีโพสต์ —{" "}
           <Link
             href="/blog/manage/posts/new"
@@ -35,7 +35,7 @@ export default async function BlogManagePage() {
           {posts.map((post) => (
             <div
               key={post.id}
-              className="card-surface flex flex-wrap items-center justify-between gap-4 p-4"
+              className="card-surface-static flex flex-col gap-3 p-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-4"
             >
               <Link
                 href={`/blog/manage/posts/${post.id}/edit`}

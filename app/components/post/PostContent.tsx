@@ -82,8 +82,8 @@ export default function PostContent({ post }: PostContentProps) {
       )}
 
       {post.summary.length > 0 && (
-        <section className="mt-10 rounded-xl border border-accent/30 bg-accent/5 p-6">
-          <h2 className="mb-4 text-xl font-bold text-accent">สรุป</h2>
+        <section className="mt-8 rounded-xl border border-accent/30 bg-accent/5 px-5 py-4 sm:px-6 sm:py-5">
+          <h2 className="mb-3 text-xl font-bold text-accent">สรุป</h2>
           <ul className="list-disc space-y-2 pl-5">
             {post.summary.map((item, i) => (
               <li key={i}>{item}</li>

@@ -42,6 +42,20 @@ export function formatDate(dateStr: string | null): string {
   });
 }
 
+export function formatDateTime(dateStr: string | null): string {
+  if (!dateStr) return "";
+  const date = new Date(dateStr);
+  if (Number.isNaN(date.getTime())) return dateStr;
+  const datePart = date.toLocaleDateString("th-TH", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
+  const h = String(date.getHours()).padStart(2, "0");
+  const m = String(date.getMinutes()).padStart(2, "0");
+  return `${datePart} ${h}.${m}`;
+}
+
 export function getPostBadge(title: string): string | null {
   const match = title.match(/^\[(.*?)\]/);
   return match ? match[1] : null;

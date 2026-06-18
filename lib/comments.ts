@@ -37,10 +37,14 @@ export async function getCommentsByPostId(postId: string): Promise<Comment[]> {
   if (!data?.length) return [];
 
   const userIds = [...new Set(data.map((c) => c.user_id as string))];
-  const { data: profiles } = await supabase
+  const { data: profiles, error: profileError } = await supabase
     .from("profiles")
     .select("id, display_name, email")
     .in("id", userIds);
+
+  if (profileError) {
+    console.error("getCommentsByPostId profiles:", profileError.message);
+  }
 
   const profileMap = new Map(
     (profiles ?? []).map((p) => [

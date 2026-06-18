@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireAdmin, requireUser } from "@/lib/auth";
 import { formDataToPostPayload } from "@/lib/posts";
+import { getOrCreateProfile } from "@/lib/profiles";
 import { createClient } from "@/lib/supabase/server";
 import type { PostFormData } from "@/types/post";
 
@@ -156,6 +157,8 @@ export async function addCommentAction(postId: string, formData: FormData) {
   if (!content) {
     return { error: "กรุณาเขียนความคิดเห็น" };
   }
+
+  await getOrCreateProfile(user.id, user.email ?? "");
 
   const supabase = await createClient();
   const { error } = await supabase.from("comments").insert({

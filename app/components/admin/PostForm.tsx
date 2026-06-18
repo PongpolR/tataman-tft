@@ -66,7 +66,7 @@ function CollapsibleSection({
   const [open, setOpen] = useState(defaultOpen);
 
   return (
-    <div className="card-surface overflow-hidden">
+    <div className="card-surface-static overflow-hidden">
       <button
         type="button"
         onClick={() => setOpen(!open)}
@@ -216,7 +216,7 @@ export default function PostForm({ post }: PostFormProps) {
         </p>
       )}
 
-      <div className="card-surface space-y-4 p-5">
+      <div className="card-surface-static space-y-4 p-5">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <h2 className="font-semibold">ข้อมูลหลัก</h2>
           <button

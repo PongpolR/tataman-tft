@@ -13,22 +13,22 @@ export default async function BlogManageLayout({
     <div className="-mx-4 -mt-8 sm:-mx-6">
       <div className="border-b border-border bg-card/50">
         <div className="site-container flex flex-wrap items-center justify-between gap-3 py-4">
-          <nav className="flex flex-wrap items-center gap-1 sm:gap-2">
+          <nav className="-mx-4 flex items-center gap-1 overflow-x-auto px-4 sm:mx-0 sm:flex-wrap sm:gap-2 sm:px-0 sm:overflow-visible">
             <Link
               href="/blog/manage"
-              className="rounded-lg px-3 py-2 text-sm font-medium text-muted transition hover:bg-card hover:text-foreground"
+              className="shrink-0 rounded-lg px-3 py-2 text-sm font-medium text-muted transition hover:bg-card hover:text-foreground"
             >
               จัดการโพสต์
             </Link>
             <Link
               href="/blog/profile"
-              className="rounded-lg px-3 py-2 text-sm font-medium text-muted transition hover:bg-card hover:text-foreground"
+              className="shrink-0 rounded-lg px-3 py-2 text-sm font-medium text-muted transition hover:bg-card hover:text-foreground"
             >
               โปรไฟล์
             </Link>
             <Link
               href="/blog"
-              className="rounded-lg px-3 py-2 text-sm font-medium text-muted transition hover:bg-card hover:text-foreground"
+              className="shrink-0 rounded-lg px-3 py-2 text-sm font-medium text-muted transition hover:bg-card hover:text-foreground"
             >
               ดูบล็อก
             </Link>

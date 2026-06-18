@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import MobileNav from "@/app/components/layout/MobileNav";
 import ThemeToggle from "@/app/components/layout/ThemeToggle";
 import { getCurrentUser, isAdminUser } from "@/lib/auth";
 
@@ -14,24 +15,24 @@ export default async function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/90 backdrop-blur-md">
-      <div className="site-container flex items-center justify-between py-4">
-        <Link href="/blog" className="group flex items-center gap-3">
+      <div className="site-container relative flex items-center justify-between py-3 sm:py-4">
+        <Link href="/blog" className="group flex items-center gap-2 sm:gap-3">
           <Image
             src="/ttm.jpg"
             alt="Tataman"
-            height={48}
-            width={48}
-            className="rounded-full ring-2 ring-accent/30 transition group-hover:ring-accent/60"
+            height={40}
+            width={40}
+            className="rounded-full ring-2 ring-accent/30 transition group-hover:ring-accent/60 sm:h-12 sm:w-12"
           />
           <div>
-            <div className="text-lg font-bold tracking-tight text-foreground">
+            <div className="text-base font-bold tracking-tight text-foreground sm:text-lg">
               Tataman
             </div>
             <div className="text-xs text-muted">TFT Player</div>
           </div>
         </Link>
 
-        <nav className="flex items-center gap-1 sm:gap-2">
+        <nav className="hidden items-center gap-1 md:flex md:gap-2">
           <ThemeToggle />
           {navLinks.map((link) => (
             <Link
@@ -68,6 +69,8 @@ export default async function SiteHeader() {
             </Link>
           )}
         </nav>
+
+        <MobileNav isLoggedIn={!!user} isAdmin={isAdmin} />
       </div>
     </header>
   );

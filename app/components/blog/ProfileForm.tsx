@@ -31,7 +31,7 @@ export default function ProfileForm({ profile, isAdmin }: ProfileFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="card-surface space-y-4 p-6">
+    <form onSubmit={handleSubmit} className="card-surface-static space-y-4 p-6">
       {message && (
         <p
           className={`rounded-lg px-3 py-2 text-sm ${

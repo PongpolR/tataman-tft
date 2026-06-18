@@ -80,7 +80,7 @@ export default function AboutPage() {
     <div>
       <h1 className="mb-6 text-2xl font-bold sm:text-3xl">About Me</h1>
 
-      <div className="card-surface mb-8 space-y-4 p-6 text-justify leading-relaxed text-muted">
+      <div className="card-surface-static mb-8 space-y-4 p-5 text-justify leading-relaxed text-muted sm:p-6">
         <p>
           เริ่มเล่น TFT ตั้งแต่ SET1 ลองเล่นเพราะเบื่อๆ จาก LoL
           เลยมีมาเล่นสลับกับโหมด rank/aram ผ่านไปช่วงเวลานึงที่เกม LoR เข้า
@@ -107,8 +107,8 @@ export default function AboutPage() {
 
       <section className="mb-10">
         <h2 className="mb-4 text-xl font-bold">Peak Rank</h2>
-        <div className="card-surface overflow-hidden">
-          <div className="flex flex-col gap-6 p-6 sm:flex-row sm:items-start">
+        <div className="card-surface-static overflow-hidden">
+          <div className="flex flex-col gap-6 p-5 sm:flex-row sm:items-start md:flex-row md:p-6">
             <Image
               src="/rank.jpg"
               alt="Peak rank"
@@ -135,7 +135,7 @@ export default function AboutPage() {
         <h2 className="mb-4 text-xl font-bold">Tournament Achievements</h2>
         <div className="space-y-4">
           {tournaments.map((tournament) => (
-            <div key={tournament.set} className="card-surface p-5">
+            <div key={tournament.set} className="card-surface-static p-5">
               <h3 className="mb-3 font-bold text-accent">{tournament.set}</h3>
               <ul className="space-y-2">
                 {tournament.events.map((event, index) => (

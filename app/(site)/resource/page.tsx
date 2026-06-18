@@ -40,9 +40,9 @@ export default function ResourcePage() {
         แหล่งข้อมูลที่แนะนำสำหรับผู้เล่น TFT ระดับ competitive
       </p>
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-4 md:gap-6 sm:grid-cols-2">
         {resources.map((section) => (
-          <section key={section.title} className="card-surface p-5">
+          <section key={section.title} className="card-surface-static p-5">
             <h2 className="mb-4 font-bold text-accent">{section.title}</h2>
             <ul className="space-y-2">
               {section.items.map((item) => (

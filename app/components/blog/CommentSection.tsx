@@ -4,7 +4,8 @@ import Link from "next/link";
 import { useState, useTransition } from "react";
 import { addCommentAction, deleteCommentAction } from "@/app/blog/actions";
 import LoadingButton from "@/app/components/ui/LoadingButton";
-import { formatDate } from "@/lib/utils";
+import TrashIcon from "@/app/components/ui/TrashIcon";
+import { formatDateTime } from "@/lib/utils";
 import type { Comment } from "@/types/comment";
 
 interface CommentSectionProps {
@@ -96,15 +97,15 @@ export default function CommentSection({
           comments.map((comment) => (
             <article
               key={comment.id}
-              className="rounded-lg border border-border bg-card/50 p-4"
+              className="rounded-lg border border-border bg-card/50 px-4 py-3"
             >
-              <div className="mb-2 flex items-center justify-between gap-2">
-                <div>
+              <div className="mb-1.5 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-2">
+                <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
                   <span className="font-medium">
                     {comment.author?.display_name ?? "ผู้ใช้"}
                   </span>
-                  <span className="ml-2 text-xs text-muted">
-                    {formatDate(comment.created_at)}
+                  <span className="text-xs text-muted">
+                    {formatDateTime(comment.created_at)}
                   </span>
                 </div>
                 {currentUserId === comment.user_id && (
@@ -112,9 +113,10 @@ export default function CommentSection({
                     type="button"
                     onClick={() => handleDelete(comment.id)}
                     disabled={isPending}
-                    className="text-xs text-red-400 hover:text-red-300"
+                    aria-label="ลบความคิดเห็น"
+                    className="self-start rounded-md p-1.5 text-red-400 transition hover:bg-red-500/10 hover:text-red-300 sm:self-center"
                   >
-                    ลบ
+                    <TrashIcon />
                   </button>
                 )}
               </div>

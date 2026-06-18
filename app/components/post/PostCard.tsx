@@ -33,7 +33,7 @@ export default function PostCard({ post }: PostCardProps) {
           {post.description}
         </p>
 
-        <span className="mt-4 inline-block text-sm font-medium text-accent opacity-0 transition group-hover:opacity-100">
+        <span className="mt-4 inline-block text-sm font-medium text-accent opacity-100 transition md:opacity-0 md:group-hover:opacity-100">
           อ่านต่อ →
         </span>
       </article>
