@@ -125,9 +125,43 @@ export async function uploadImageAction(formData: FormData) {
   return { url: publicUrl };
 }
 
+export async function uploadAvatarAction(formData: FormData) {
+  const user = await requireUser();
+  const file = formData.get("file") as File;
+
+  if (!file || file.size === 0) {
+    return { error: "กรุณาเลือกรูปภาพ" };
+  }
+
+  if (file.size > 2 * 1024 * 1024) {
+    return { error: "รูปภาพต้องมีขนาดไม่เกิน 2MB" };
+  }
+
+  if (!file.type.startsWith("image/")) {
+    return { error: "กรุณาเลือกไฟล์รูปภาพเท่านั้น" };
+  }
+
+  const supabase = await createClient();
+  const ext = file.name.split(".").pop()?.toLowerCase() ?? "jpg";
+  const filePath = `${user.id}/avatar.${ext}`;
+
+  const { error } = await supabase.storage
+    .from("avatars")
+    .upload(filePath, file, { upsert: true });
+
+  if (error) return { error: error.message };
+
+  const {
+    data: { publicUrl },
+  } = supabase.storage.from("avatars").getPublicUrl(filePath);
+
+  return { url: publicUrl };
+}
+
 export async function updateProfileAction(formData: FormData) {
   const user = await requireUser();
   const displayName = (formData.get("display_name") as string)?.trim();
+  const avatarUrl = (formData.get("avatar_url") as string)?.trim() || null;
 
   if (!displayName) {
     return { error: "กรุณากรอกชื่อที่แสดง" };
@@ -139,6 +173,7 @@ export async function updateProfileAction(formData: FormData) {
       id: user.id,
       email: user.email ?? "",
       display_name: displayName,
+      avatar_url: avatarUrl,
       updated_at: new Date().toISOString(),
     },
     { onConflict: "id" }
@@ -147,6 +182,7 @@ export async function updateProfileAction(formData: FormData) {
   if (error) return { error: error.message };
 
   revalidatePath("/blog/profile");
+  revalidatePath("/blog", "layout");
   return { success: true };
 }
 

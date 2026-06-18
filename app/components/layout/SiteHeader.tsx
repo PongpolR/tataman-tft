@@ -2,7 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import MobileNav from "@/app/components/layout/MobileNav";
 import ThemeToggle from "@/app/components/layout/ThemeToggle";
+import UserMenu from "@/app/components/layout/UserMenu";
 import { getCurrentUser, isAdminUser } from "@/lib/auth";
+import { getOrCreateProfile } from "@/lib/profiles";
 
 const navLinks = [
   { href: "/resource", label: "Resource" },
@@ -12,10 +14,13 @@ const navLinks = [
 export default async function SiteHeader() {
   const user = await getCurrentUser();
   const isAdmin = isAdminUser(user);
+  const profile = user
+    ? await getOrCreateProfile(user.id, user.email ?? "")
+    : null;
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/90 backdrop-blur-md">
-      <div className="site-container relative flex items-center justify-between py-3 sm:py-4">
+      <div className="site-container flex h-14 items-center justify-between sm:h-16">
         <Link href="/blog" className="group flex items-center gap-2 sm:gap-3">
           <Image
             src="/ttm.jpg"
@@ -32,45 +37,47 @@ export default async function SiteHeader() {
           </div>
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex md:gap-2">
-          <ThemeToggle />
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="rounded-lg px-3 py-2 text-sm font-medium text-muted transition hover:bg-card hover:text-foreground"
-            >
-              {link.label}
-            </Link>
-          ))}
-          {user ? (
-            <>
-              {isAdmin && (
+        <div className="flex items-center gap-1 sm:gap-2">
+          {user && profile && (
+            <UserMenu
+              displayName={profile.display_name || profile.email.split("@")[0]}
+              avatarUrl={profile.avatar_url}
+              isAdmin={isAdmin}
+            />
+          )}
+
+          <nav className="hidden items-center gap-1 md:flex md:gap-2">
+            <ThemeToggle />
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="rounded-lg px-3 py-2 text-sm font-medium text-muted transition hover:bg-card hover:text-foreground"
+              >
+                {link.label}
+              </Link>
+            ))}
+            {user ? (
+              isAdmin && (
                 <Link
                   href="/blog/manage"
                   className="rounded-lg px-3 py-2 text-sm font-medium text-muted transition hover:bg-card hover:text-foreground"
                 >
                   จัดการโพสต์
                 </Link>
-              )}
+              )
+            ) : (
               <Link
-                href="/blog/profile"
+                href="/login"
                 className="rounded-lg px-3 py-2 text-sm font-medium text-accent transition hover:bg-card"
               >
-                โปรไฟล์
+                เข้าสู่ระบบ
               </Link>
-            </>
-          ) : (
-            <Link
-              href="/login"
-              className="rounded-lg px-3 py-2 text-sm font-medium text-accent transition hover:bg-card"
-            >
-              เข้าสู่ระบบ
-            </Link>
-          )}
-        </nav>
+            )}
+          </nav>
 
-        <MobileNav isLoggedIn={!!user} isAdmin={isAdmin} />
+          <MobileNav isLoggedIn={!!user} isAdmin={isAdmin} />
+        </div>
       </div>
     </header>
   );

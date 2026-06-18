@@ -79,7 +79,7 @@ export default function MobileNav({ isLoggedIn, isAdmin }: MobileNavProps) {
             className="fixed inset-0 z-40 bg-black/50"
             onClick={close}
           />
-          <nav className="absolute left-0 right-0 top-full z-50 border-b border-border bg-background/95 backdrop-blur-md">
+          <nav className="fixed inset-x-0 top-14 z-50 border-b border-border bg-background sm:top-16">
             <div className="site-container flex flex-col gap-1 py-3">
               <div className="flex items-center justify-between px-3 py-2">
                 <span className="text-sm font-medium text-muted">ธีม</span>
@@ -95,26 +95,16 @@ export default function MobileNav({ isLoggedIn, isAdmin }: MobileNavProps) {
                   {link.label}
                 </Link>
               ))}
-              {isLoggedIn ? (
-                <>
-                  {isAdmin && (
-                    <Link
-                      href="/blog/manage"
-                      onClick={close}
-                      className="rounded-lg px-3 py-2.5 text-sm font-medium text-muted transition hover:bg-card hover:text-foreground"
-                    >
-                      จัดการโพสต์
-                    </Link>
-                  )}
-                  <Link
-                    href="/blog/profile"
-                    onClick={close}
-                    className="rounded-lg px-3 py-2.5 text-sm font-medium text-accent transition hover:bg-card"
-                  >
-                    โปรไฟล์
-                  </Link>
-                </>
-              ) : (
+              {isLoggedIn && isAdmin && (
+                <Link
+                  href="/blog/manage"
+                  onClick={close}
+                  className="rounded-lg px-3 py-2.5 text-sm font-medium text-muted transition hover:bg-card hover:text-foreground"
+                >
+                  จัดการโพสต์
+                </Link>
+              )}
+              {!isLoggedIn && (
                 <Link
                   href="/login"
                   onClick={close}

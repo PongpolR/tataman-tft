@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useTransition } from "react";
+import { useRef, useState, useTransition } from "react";
 import { addCommentAction, deleteCommentAction } from "@/app/blog/actions";
 import LoadingButton from "@/app/components/ui/LoadingButton";
 import TrashIcon from "@/app/components/ui/TrashIcon";
@@ -26,6 +26,7 @@ export default function CommentSection({
   const [content, setContent] = useState("");
   const [message, setMessage] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
+  const formRef = useRef<HTMLFormElement>(null);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -54,6 +55,14 @@ export default function CommentSection({
     });
   }
 
+  function handleTextareaKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>) {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      if (!content.trim() || isPending) return;
+      formRef.current?.requestSubmit();
+    }
+  }
+
   return (
     <section className="animate-fade-in-up mt-12 border-t border-border pt-8">
       <h2 className="mb-6 text-xl font-bold">
@@ -61,10 +70,11 @@ export default function CommentSection({
       </h2>
 
       {isLoggedIn ? (
-        <form onSubmit={handleSubmit} className="mb-8 space-y-3">
+        <form ref={formRef} onSubmit={handleSubmit} className="mb-8 space-y-3">
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
+            onKeyDown={handleTextareaKeyDown}
             placeholder="เขียนความคิดเห็น..."
             rows={3}
             maxLength={2000}

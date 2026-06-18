@@ -8,23 +8,18 @@ import LoadingButton from "@/app/components/ui/LoadingButton";
 
 export default function RegisterForm() {
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
     setError(null);
-    setSuccess(null);
 
     const formData = new FormData(e.currentTarget);
     const result = await registerAction(formData);
 
     if (result?.error) {
       setError(result.error);
-      setLoading(false);
-    } else if (result?.success) {
-      setSuccess(result.success);
       setLoading(false);
     }
   }
@@ -52,12 +47,6 @@ export default function RegisterForm() {
         {error && (
           <p className="rounded-lg bg-red-500/10 px-4 py-3 text-sm text-red-400">
             {error}
-          </p>
-        )}
-
-        {success && (
-          <p className="rounded-lg bg-green-500/10 px-4 py-3 text-sm text-green-400">
-            {success}
           </p>
         )}
 

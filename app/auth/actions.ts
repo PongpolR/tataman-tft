@@ -56,19 +56,27 @@ export async function registerAction(formData: FormData) {
     return { error: error.message };
   }
 
-  if (data.session) {
-    const cookieStore = await cookies();
-    cookieStore.delete(GUEST_COOKIE);
-    if (data.user) {
-      await getOrCreateProfile(data.user.id, data.user.email ?? email);
+  if (!data.session) {
+    const { error: loginError } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+    if (loginError) {
+      return { error: loginError.message };
     }
-    redirectAfterLogin(email);
   }
 
-  return {
-    success:
-      "สมัครสมาชิกสำเร็จ กรุณาตรวจสอบอีเมลเพื่อยืนยันบัญชี (ถ้ามีการเปิดใช้งาน email confirmation)",
-  };
+  const cookieStore = await cookies();
+  cookieStore.delete(GUEST_COOKIE);
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (user) {
+    await getOrCreateProfile(user.id, user.email ?? email);
+  }
+
+  redirectAfterLogin(email);
 }
 
 export async function guestAction() {
