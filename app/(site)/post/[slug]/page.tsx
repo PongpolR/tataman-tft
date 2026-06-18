@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import CommentSection from "@/app/components/blog/CommentSection";
 import PostContent from "@/app/components/post/PostContent";
+import ReadingProgressBar from "@/app/components/post/ReadingProgressBar";
 import { getCurrentUser } from "@/lib/auth";
 import { getCommentsByPostId } from "@/lib/comments";
 import { getPostBySlug } from "@/lib/posts";
@@ -33,6 +34,7 @@ export default async function PostPage({ params }: PageProps) {
 
   return (
     <>
+      <ReadingProgressBar />
       <PostContent post={post} />
       <CommentSection
         postId={post.id}

@@ -9,7 +9,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Noto Sans Thai", "sans-serif"],
+        sans: ["var(--font-noto)", "Noto Sans Thai", "sans-serif"],
+        display: ["var(--font-ibm-plex)", "IBM Plex Sans Thai", "sans-serif"],
       },
       colors: {
         background: "var(--background)",
