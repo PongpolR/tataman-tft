@@ -62,6 +62,14 @@ export async function registerAction(formData: FormData) {
       password,
     });
     if (loginError) {
+      if (
+        loginError.message.toLowerCase().includes("email not confirmed")
+      ) {
+        return {
+          error:
+            "ยังต้องยืนยันอีเมลอยู่ กรุณาปิด Email confirmations ใน Supabase Dashboard → Authentication → Providers → Email",
+        };
+      }
       return { error: loginError.message };
     }
   }

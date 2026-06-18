@@ -11,6 +11,8 @@ interface UserMenuProps {
   isAdmin: boolean;
 }
 
+const CLOSE_DELAY_MS = 200;
+
 function AvatarFallback({ name }: { name: string }) {
   const initial = name.trim().charAt(0).toUpperCase() || "?";
   return (
@@ -27,6 +29,28 @@ export default function UserMenu({
 }: UserMenuProps) {
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  function clearCloseTimer() {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+  }
+
+  function scheduleClose() {
+    clearCloseTimer();
+    closeTimerRef.current = setTimeout(() => setOpen(false), CLOSE_DELAY_MS);
+  }
+
+  function handleMouseEnter() {
+    clearCloseTimer();
+    setOpen(true);
+  }
+
+  function handleMouseLeave() {
+    scheduleClose();
+  }
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -38,10 +62,14 @@ export default function UserMenu({
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      clearCloseTimer();
+    };
   }, []);
 
   function close() {
+    clearCloseTimer();
     setOpen(false);
   }
 
@@ -49,8 +77,8 @@ export default function UserMenu({
     <div
       ref={containerRef}
       className="relative"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <button
         type="button"
@@ -73,31 +101,39 @@ export default function UserMenu({
       </button>
 
       {open && (
-        <div className="absolute right-0 top-full z-50 mt-2 min-w-[10rem] rounded-lg border border-border bg-card py-1 shadow-lg">
-          <Link
-            href="/blog/profile"
-            onClick={close}
-            className="block px-4 py-2 text-sm text-foreground transition hover:bg-card-hover"
-          >
-            โปรไฟล์
-          </Link>
-          {isAdmin && (
+        <div
+          className="absolute right-0 top-full z-50 pt-1"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          <div className="min-w-[11rem] overflow-hidden rounded-lg border border-border bg-card py-1 shadow-lg">
             <Link
-              href="/blog/manage"
+              href="/blog/profile"
               onClick={close}
               className="block px-4 py-2 text-sm text-foreground transition hover:bg-card-hover"
             >
-              จัดการโพสต์
+              โปรไฟล์
             </Link>
-          )}
-          <form action={logoutAction}>
-            <button
-              type="submit"
-              className="block w-full px-4 py-2 text-left text-sm text-muted transition hover:bg-card-hover hover:text-foreground"
-            >
-              ออกจากระบบ
-            </button>
-          </form>
+            {isAdmin && (
+              <Link
+                href="/blog/manage"
+                onClick={close}
+                className="block px-4 py-2 text-sm text-foreground transition hover:bg-card-hover"
+              >
+                จัดการโพสต์
+              </Link>
+            )}
+            <div className="mt-1 border-t border-border px-2 pb-1 pt-1">
+              <form action={logoutAction}>
+                <button
+                  type="submit"
+                  className="block w-full rounded-md px-3 py-2 text-left text-sm font-medium text-red-400 transition hover:bg-red-500/20"
+                >
+                  ออกจากระบบ
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
       )}
     </div>
