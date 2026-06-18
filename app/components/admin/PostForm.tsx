@@ -7,9 +7,9 @@ import {
   createPostAction,
   deletePostAction,
   updatePostAction,
-} from "@/app/admin/actions";
+} from "@/app/blog/actions";
 import { slugify } from "@/lib/utils";
-import type { Post, PostFormData } from "@/types/post";
+import type { Post, PostFormData, PostStatus } from "@/types/post";
 
 interface PostFormProps {
   post?: Post;
@@ -53,46 +53,100 @@ function postToForm(post: Post): PostFormData {
   };
 }
 
-function StringListEditor({
+function CollapsibleSection({
+  title,
+  defaultOpen = false,
+  children,
+}: {
+  title: string;
+  defaultOpen?: boolean;
+  children: React.ReactNode;
+}) {
+  const [open, setOpen] = useState(defaultOpen);
+
+  return (
+    <div className="card-surface overflow-hidden">
+      <button
+        type="button"
+        onClick={() => setOpen(!open)}
+        className="flex w-full items-center justify-between px-5 py-4 text-left font-medium transition hover:bg-card-hover"
+      >
+        {title}
+        <span className="text-muted">{open ? "−" : "+"}</span>
+      </button>
+      {open && (
+        <div className="space-y-4 border-t border-border px-5 py-4">
+          {children}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ParagraphEditor({
   label,
+  hint,
   values,
   onChange,
 }: {
   label: string;
+  hint?: string;
   values: string[];
   onChange: (values: string[]) => void;
 }) {
+  const text = values.filter(Boolean).join("\n\n");
+
   return (
-    <div className="space-y-2">
-      <label className="block text-sm font-medium">{label}</label>
-      {values.map((value, i) => (
-        <div key={i} className="flex gap-2">
-          <textarea
-            value={value}
-            onChange={(e) => {
-              const next = [...values];
-              next[i] = e.target.value;
-              onChange(next);
-            }}
-            rows={2}
-            className="input-field flex-1"
-          />
-          <button
-            type="button"
-            onClick={() => onChange(values.filter((_, idx) => idx !== i))}
-            className="btn-secondary shrink-0 px-2 text-xs"
-          >
-            ลบ
-          </button>
-        </div>
-      ))}
-      <button
-        type="button"
-        onClick={() => onChange([...values, ""])}
-        className="btn-secondary text-xs"
-      >
-        + เพิ่มบรรทัด
-      </button>
+    <div>
+      <label className="mb-1 block text-sm font-medium">{label}</label>
+      {hint && <p className="mb-2 text-xs text-muted">{hint}</p>}
+      <textarea
+        value={text}
+        onChange={(e) => {
+          const paragraphs = e.target.value
+            .split(/\n{2,}/)
+            .map((p) => p.trim())
+            .filter(Boolean);
+          onChange(paragraphs.length ? paragraphs : [""]);
+        }}
+        rows={6}
+        className="input-field resize-y"
+        placeholder="แยกย่อหน้าด้วยบรรทัดว่าง"
+      />
+    </div>
+  );
+}
+
+function LineListEditor({
+  label,
+  hint,
+  values,
+  onChange,
+}: {
+  label: string;
+  hint?: string;
+  values: string[];
+  onChange: (values: string[]) => void;
+}) {
+  const text = values.filter(Boolean).join("\n");
+
+  return (
+    <div>
+      <label className="mb-1 block text-sm font-medium">{label}</label>
+      {hint && <p className="mb-2 text-xs text-muted">{hint}</p>}
+      <textarea
+        value={text}
+        onChange={(e) => {
+          const lines = e.target.value
+            .split("\n")
+            .map((l) => l.trim())
+            .filter(Boolean);
+          onChange(lines.length ? lines : [""]);
+        }}
+        rows={4}
+        className="input-field resize-y"
+        placeholder="หนึ่งบรรทัดต่อหนึ่งรายการ"
+      />
     </div>
   );
 }
@@ -119,7 +173,7 @@ export default function PostForm({ post }: PostFormProps) {
     }));
   }
 
-  function submit(status: "draft" | "published") {
+  function submit(status: PostStatus) {
     const payload = { ...form, status };
     setMessage(null);
 
@@ -132,6 +186,7 @@ export default function PostForm({ post }: PostFormProps) {
         setMessage(result.error);
       } else if (result && "success" in result) {
         setMessage("บันทึกสำเร็จ");
+        setForm((prev) => ({ ...prev, status }));
       }
     });
   }
@@ -139,14 +194,15 @@ export default function PostForm({ post }: PostFormProps) {
   function handleDelete() {
     if (!post) return;
     if (!confirm("ลบโพสต์นี้?")) return;
-
     startTransition(async () => {
       await deletePostAction(post.id);
     });
   }
 
+  const isPublished = form.status === "published";
+
   return (
-    <div className="space-y-6">
+    <div className="mx-auto max-w-3xl space-y-4">
       {message && (
         <p
           className={`rounded-lg px-4 py-2 text-sm ${
@@ -159,9 +215,26 @@ export default function PostForm({ post }: PostFormProps) {
         </p>
       )}
 
-      <div className="grid gap-4 sm:grid-cols-2">
-        <div className="sm:col-span-2">
-          <label className="mb-1 block text-sm font-medium">Title</label>
+      <div className="card-surface space-y-4 p-5">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <h2 className="font-semibold">ข้อมูลหลัก</h2>
+          <button
+            type="button"
+            onClick={() =>
+              updateField("status", isPublished ? "draft" : "published")
+            }
+            className={`rounded-full px-3 py-1 text-xs font-medium ${
+              isPublished
+                ? "bg-green-500/15 text-green-400"
+                : "bg-yellow-500/15 text-yellow-400"
+            }`}
+          >
+            {isPublished ? "Published" : "Hidden (Draft)"}
+          </button>
+        </div>
+
+        <div>
+          <label className="mb-1 block text-sm font-medium">หัวข้อ</label>
           <input
             value={form.title}
             onChange={(e) => handleTitleChange(e.target.value)}
@@ -170,107 +243,107 @@ export default function PostForm({ post }: PostFormProps) {
           />
         </div>
 
-        <div>
-          <label className="mb-1 block text-sm font-medium">Slug</label>
-          <input
-            value={form.slug}
-            onChange={(e) => updateField("slug", e.target.value)}
-            className="input-field"
-            required
-          />
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label className="mb-1 block text-sm font-medium">Slug (URL)</label>
+            <input
+              value={form.slug}
+              onChange={(e) => updateField("slug", e.target.value)}
+              className="input-field"
+              required
+            />
+          </div>
+          <div>
+            <label className="mb-1 block text-sm font-medium">คำอธิบายสั้น</label>
+            <input
+              value={form.description}
+              onChange={(e) => updateField("description", e.target.value)}
+              className="input-field"
+              required
+            />
+          </div>
         </div>
 
+        <ParagraphEditor
+          label="เนื้อหาหลัก"
+          hint="แยกย่อหน้าด้วยบรรทัดว่าง"
+          values={form.body}
+          onChange={(v) => updateField("body", v)}
+        />
+      </div>
+
+      <CollapsibleSection title="รูปภาพ">
+        <ImageUpload
+          label="รูปที่ 1"
+          value={form.img}
+          onChange={(v) => updateField("img", v)}
+        />
         <div>
-          <label className="mb-1 block text-sm font-medium">Description</label>
+          <label className="mb-1 block text-sm font-medium">คำอธิบายรูปที่ 1</label>
           <input
-            value={form.description}
-            onChange={(e) => updateField("description", e.target.value)}
+            value={form.img_desc}
+            onChange={(e) => updateField("img_desc", e.target.value)}
             className="input-field"
-            required
           />
         </div>
-      </div>
-
-      <div>
-        <label className="mb-1 block text-sm font-medium">
-          Header (คำศัพท์ที่เกี่ยวข้อง)
-        </label>
-        <input
-          value={form.header}
-          onChange={(e) => updateField("header", e.target.value)}
-          className="input-field"
-          placeholder="เว้นว่างได้ถ้าไม่มี"
+        <ImageUpload
+          label="รูปที่ 2"
+          value={form.img2}
+          onChange={(v) => updateField("img2", v)}
         />
-      </div>
+        <div>
+          <label className="mb-1 block text-sm font-medium">คำอธิบายรูปที่ 2</label>
+          <input
+            value={form.img2_desc}
+            onChange={(e) => updateField("img2_desc", e.target.value)}
+            className="input-field"
+          />
+        </div>
+      </CollapsibleSection>
 
-      <StringListEditor
-        label="Glossary items"
-        values={form.header_desc}
-        onChange={(v) => updateField("header_desc", v)}
-      />
-
-      <StringListEditor
-        label="Body paragraphs"
-        values={form.body}
-        onChange={(v) => updateField("body", v)}
-      />
-
-      <ImageUpload
-        label="รูปที่ 1"
-        value={form.img}
-        onChange={(v) => updateField("img", v)}
-      />
-
-      <div>
-        <label className="mb-1 block text-sm font-medium">คำอธิบายรูปที่ 1</label>
-        <input
-          value={form.img_desc}
-          onChange={(e) => updateField("img_desc", e.target.value)}
-          className="input-field"
+      <CollapsibleSection title="เนื้อหาเพิ่มเติม">
+        <div>
+          <label className="mb-1 block text-sm font-medium">
+            หัวข้อคำศัพท์ (Glossary)
+          </label>
+          <input
+            value={form.header}
+            onChange={(e) => updateField("header", e.target.value)}
+            className="input-field"
+            placeholder="เว้นว่างได้ถ้าไม่มี"
+          />
+        </div>
+        <LineListEditor
+          label="รายการคำศัพท์"
+          values={form.header_desc}
+          onChange={(v) => updateField("header_desc", v)}
         />
-      </div>
-
-      <StringListEditor
-        label="Body 2 paragraphs"
-        values={form.body2}
-        onChange={(v) => updateField("body2", v)}
-      />
-
-      <ImageUpload
-        label="รูปที่ 2"
-        value={form.img2}
-        onChange={(v) => updateField("img2", v)}
-      />
-
-      <div>
-        <label className="mb-1 block text-sm font-medium">คำอธิบายรูปที่ 2</label>
-        <input
-          value={form.img2_desc}
-          onChange={(e) => updateField("img2_desc", e.target.value)}
-          className="input-field"
+        <ParagraphEditor
+          label="เนื้อหาส่วนที่ 2"
+          values={form.body2}
+          onChange={(v) => updateField("body2", v)}
         />
-      </div>
+        <LineListEditor
+          label="สรุป"
+          values={form.summary}
+          onChange={(v) => updateField("summary", v)}
+        />
+        <LineListEditor
+          label="อ้างอิง (URL)"
+          hint="หนึ่ง URL ต่อบรรทัด"
+          values={form.ref}
+          onChange={(v) => updateField("ref", v)}
+        />
+      </CollapsibleSection>
 
-      <StringListEditor
-        label="Summary bullets"
-        values={form.summary}
-        onChange={(v) => updateField("summary", v)}
-      />
-
-      <StringListEditor
-        label="References (URLs)"
-        values={form.ref}
-        onChange={(v) => updateField("ref", v)}
-      />
-
-      <div className="flex flex-wrap gap-3 border-t border-border pt-6">
+      <div className="flex flex-wrap gap-3 pt-2">
         <button
           type="button"
           disabled={isPending}
           onClick={() => submit("draft")}
           className="btn-secondary"
         >
-          บันทึก Draft
+          บันทึก (ซ่อน)
         </button>
         <button
           type="button"
@@ -278,7 +351,7 @@ export default function PostForm({ post }: PostFormProps) {
           onClick={() => submit("published")}
           className="btn-primary"
         >
-          Publish
+          บันทึก & เผยแพร่
         </button>
         {post && (
           <>
@@ -299,7 +372,7 @@ export default function PostForm({ post }: PostFormProps) {
             </button>
           </>
         )}
-        <Link href="/admin" className="btn-secondary ml-auto">
+        <Link href="/blog/manage" className="btn-secondary ml-auto">
           กลับ
         </Link>
       </div>

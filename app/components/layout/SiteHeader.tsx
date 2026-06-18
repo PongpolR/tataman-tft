@@ -1,12 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getCurrentUser, isAdminUser } from "@/lib/auth";
 
 const navLinks = [
   { href: "/resource", label: "Resource" },
   { href: "/about", label: "About" },
 ];
 
-export default function SiteHeader() {
+export default async function SiteHeader() {
+  const user = await getCurrentUser();
+  const isAdmin = isAdminUser(user);
+
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/90 backdrop-blur-md">
       <div className="site-container flex items-center justify-between py-4">
@@ -36,6 +40,31 @@ export default function SiteHeader() {
               {link.label}
             </Link>
           ))}
+          {user ? (
+            <>
+              {isAdmin && (
+                <Link
+                  href="/blog/manage"
+                  className="rounded-lg px-3 py-2 text-sm font-medium text-muted transition hover:bg-card hover:text-foreground"
+                >
+                  จัดการโพสต์
+                </Link>
+              )}
+              <Link
+                href="/blog/profile"
+                className="rounded-lg px-3 py-2 text-sm font-medium text-accent transition hover:bg-card"
+              >
+                โปรไฟล์
+              </Link>
+            </>
+          ) : (
+            <Link
+              href="/login"
+              className="rounded-lg px-3 py-2 text-sm font-medium text-accent transition hover:bg-card"
+            >
+              เข้าสู่ระบบ
+            </Link>
+          )}
         </nav>
       </div>
     </header>

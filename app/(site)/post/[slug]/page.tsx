@@ -1,5 +1,8 @@
 import { notFound } from "next/navigation";
+import CommentSection from "@/app/components/blog/CommentSection";
 import PostContent from "@/app/components/post/PostContent";
+import { getCurrentUser } from "@/lib/auth";
+import { getCommentsByPostId } from "@/lib/comments";
 import { getPostBySlug } from "@/lib/posts";
 import type { Metadata } from "next";
 
@@ -23,5 +26,19 @@ export default async function PostPage({ params }: PageProps) {
 
   if (!post) notFound();
 
-  return <PostContent post={post} />;
+  const user = await getCurrentUser();
+  const comments = await getCommentsByPostId(post.id);
+
+  return (
+    <>
+      <PostContent post={post} />
+      <CommentSection
+        postId={post.id}
+        postSlug={post.slug}
+        comments={comments}
+        currentUserId={user?.id}
+        isLoggedIn={!!user}
+      />
+    </>
+  );
 }

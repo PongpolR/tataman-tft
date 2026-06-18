@@ -1,5 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { isAdminEmail } from "@/lib/auth";
 
 export const GUEST_COOKIE = "guest";
 
@@ -10,6 +11,14 @@ function isGuestAllowedRoute(pathname: string): boolean {
     pathname === "/resource" ||
     pathname.startsWith("/post/")
   );
+}
+
+function isBlogManageRoute(pathname: string): boolean {
+  return pathname.startsWith("/blog/manage");
+}
+
+function isBlogProfileRoute(pathname: string): boolean {
+  return pathname === "/blog/profile";
 }
 
 function redirectTo(request: NextRequest, pathname: string) {
@@ -50,10 +59,15 @@ export async function updateSession(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const isGuest = request.cookies.get(GUEST_COOKIE)?.value === "1";
   const isAuthRoute = pathname === "/login" || pathname === "/register";
-  const isAdminRoute = pathname.startsWith("/admin");
+  const isLegacyAdminRoute = pathname.startsWith("/admin");
 
   if (pathname === "/") {
     return redirectTo(request, "/login");
+  }
+
+  if (isLegacyAdminRoute) {
+    const newPath = pathname.replace(/^\/admin/, "/blog/manage");
+    return redirectTo(request, newPath);
   }
 
   if (pathname === "/admin/login") {
@@ -62,7 +76,8 @@ export async function updateSession(request: NextRequest) {
 
   if (isAuthRoute) {
     if (user) {
-      return redirectTo(request, "/admin");
+      const dest = isAdminEmail(user.email) ? "/blog/manage" : "/blog/profile";
+      return redirectTo(request, dest);
     }
     if (isGuest) {
       return redirectTo(request, "/blog");
@@ -70,7 +85,17 @@ export async function updateSession(request: NextRequest) {
     return supabaseResponse;
   }
 
-  if (isAdminRoute) {
+  if (isBlogManageRoute) {
+    if (!user) {
+      return redirectTo(request, "/login");
+    }
+    if (!isAdminEmail(user.email)) {
+      return redirectTo(request, "/blog/profile");
+    }
+    return supabaseResponse;
+  }
+
+  if (isBlogProfileRoute) {
     if (!user) {
       return redirectTo(request, "/login");
     }

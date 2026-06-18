@@ -1,0 +1,12 @@
+export interface Comment {
+  id: string;
+  post_id: string;
+  user_id: string;
+  content: string;
+  created_at: string;
+  updated_at: string;
+  author?: {
+    display_name: string;
+    email: string;
+  };
+}

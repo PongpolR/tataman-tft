@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { uploadImageAction } from "@/app/admin/actions";
+import { uploadImageAction } from "@/app/blog/actions";
 
 interface ImageUploadProps {
   label: string;

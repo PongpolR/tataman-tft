@@ -1,0 +1,46 @@
+import Link from "next/link";
+import { logoutAction } from "@/app/auth/actions";
+import { requireAdmin } from "@/lib/auth";
+
+export default async function BlogManageLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  await requireAdmin();
+
+  return (
+    <div className="-mx-4 -mt-8 sm:-mx-6">
+      <div className="border-b border-border bg-card/50">
+        <div className="site-container flex flex-wrap items-center justify-between gap-3 py-4">
+          <nav className="flex flex-wrap items-center gap-1 sm:gap-2">
+            <Link
+              href="/blog/manage"
+              className="rounded-lg px-3 py-2 text-sm font-medium text-muted transition hover:bg-card hover:text-foreground"
+            >
+              จัดการโพสต์
+            </Link>
+            <Link
+              href="/blog/profile"
+              className="rounded-lg px-3 py-2 text-sm font-medium text-muted transition hover:bg-card hover:text-foreground"
+            >
+              โปรไฟล์
+            </Link>
+            <Link
+              href="/blog"
+              className="rounded-lg px-3 py-2 text-sm font-medium text-muted transition hover:bg-card hover:text-foreground"
+            >
+              ดูบล็อก
+            </Link>
+          </nav>
+          <form action={logoutAction}>
+            <button type="submit" className="btn-secondary text-xs">
+              ออกจากระบบ
+            </button>
+          </form>
+        </div>
+      </div>
+      <div className="site-container py-8">{children}</div>
+    </div>
+  );
+}

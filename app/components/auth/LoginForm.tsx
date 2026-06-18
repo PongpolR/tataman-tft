@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { guestAction, loginAction } from "@/app/auth/actions";
 
@@ -30,67 +31,89 @@ export default function LoginForm() {
   }
 
   return (
-    <div className="card-surface mx-auto max-w-md space-y-4 p-8">
-      <h1 className="text-center text-xl font-bold">เข้าสู่ระบบ</h1>
+    <div className="relative w-full max-w-lg">
+      <div className="pointer-events-none absolute -inset-px rounded-2xl bg-gradient-to-br from-accent/20 via-transparent to-accent-muted/20" />
 
-      {error && (
-        <p className="rounded-lg bg-red-500/10 px-3 py-2 text-sm text-red-400">
-          {error}
+      <div className="card-surface relative space-y-6 rounded-2xl p-8 shadow-xl shadow-black/20 sm:p-10">
+        <div className="flex flex-col items-center text-center">
+          <Image
+            src="/ttm.jpg"
+            alt="Tataman"
+            width={64}
+            height={64}
+            className="mb-4 rounded-full ring-2 ring-accent/40"
+          />
+          <h1 className="text-2xl font-bold">เข้าสู่ระบบ</h1>
+          <p className="mt-1 text-sm text-muted">
+            ยินดีต้อนรับสู่ Tataman TFT Blog
+          </p>
+        </div>
+
+        {error && (
+          <p className="rounded-lg bg-red-500/10 px-4 py-3 text-sm text-red-400">
+            {error}
+          </p>
+        )}
+
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <div>
+            <label className="mb-1.5 block text-sm font-medium">Email</label>
+            <input
+              name="email"
+              type="email"
+              required
+              className="input-field py-2.5"
+              autoComplete="email"
+              placeholder="you@example.com"
+            />
+          </div>
+
+          <div>
+            <label className="mb-1.5 block text-sm font-medium">Password</label>
+            <input
+              name="password"
+              type="password"
+              required
+              className="input-field py-2.5"
+              autoComplete="current-password"
+              placeholder="••••••••"
+            />
+          </div>
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="btn-primary w-full py-2.5 text-base"
+          >
+            {loading ? "กำลังเข้าสู่ระบบ..." : "เข้าสู่ระบบ"}
+          </button>
+        </form>
+
+        <p className="text-center text-sm text-muted">
+          ยังไม่มีบัญชี?{" "}
+          <Link href="/register" className="font-medium text-accent hover:underline">
+            สมัครสมาชิก
+          </Link>
         </p>
-      )}
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="mb-1 block text-sm font-medium">Email</label>
-          <input
-            name="email"
-            type="email"
-            required
-            className="input-field"
-            autoComplete="email"
-          />
+        <div className="relative">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-border" />
+          </div>
+          <div className="relative flex justify-center text-xs">
+            <span className="bg-card px-3 text-muted">หรือ</span>
+          </div>
         </div>
 
-        <div>
-          <label className="mb-1 block text-sm font-medium">Password</label>
-          <input
-            name="password"
-            type="password"
-            required
-            className="input-field"
-            autoComplete="current-password"
-          />
-        </div>
-
-        <button type="submit" disabled={loading} className="btn-primary w-full">
-          {loading ? "กำลังเข้าสู่ระบบ..." : "เข้าสู่ระบบ"}
+        <button
+          type="button"
+          onClick={handleGuest}
+          disabled={guestLoading}
+          className="btn-secondary w-full py-2.5"
+        >
+          {guestLoading ? "กำลังเข้าใช้งาน..." : "เข้าใช้งานแบบ Guest"}
         </button>
-      </form>
-
-      <p className="text-center text-sm text-muted">
-        ยังไม่มีบัญชี?{" "}
-        <Link href="/register" className="text-accent hover:underline">
-          สมัครสมาชิก
-        </Link>
-      </p>
-
-      <div className="relative">
-        <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-border" />
-        </div>
-        <div className="relative flex justify-center text-xs">
-          <span className="bg-card px-2 text-muted">หรือ</span>
-        </div>
       </div>
-
-      <button
-        type="button"
-        onClick={handleGuest}
-        disabled={guestLoading}
-        className="btn-secondary w-full"
-      >
-        {guestLoading ? "กำลังเข้าใช้งาน..." : "เข้าใช้งานแบบ Guest"}
-      </button>
     </div>
   );
 }

@@ -2,10 +2,18 @@
 
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { isAdminEmail } from "@/lib/auth";
 import { GUEST_COOKIE } from "@/lib/supabase/middleware";
 import { createClient } from "@/lib/supabase/server";
 
 const GUEST_MAX_AGE = 60 * 60 * 24 * 30;
+
+function redirectAfterLogin(email: string | undefined) {
+  if (isAdminEmail(email)) {
+    redirect("/blog/manage");
+  }
+  redirect("/blog/profile");
+}
 
 export async function loginAction(formData: FormData) {
   const email = formData.get("email") as string;
@@ -21,7 +29,7 @@ export async function loginAction(formData: FormData) {
   const cookieStore = await cookies();
   cookieStore.delete(GUEST_COOKIE);
 
-  redirect("/admin");
+  redirectAfterLogin(email);
 }
 
 export async function registerAction(formData: FormData) {
@@ -43,7 +51,7 @@ export async function registerAction(formData: FormData) {
   if (data.session) {
     const cookieStore = await cookies();
     cookieStore.delete(GUEST_COOKIE);
-    redirect("/admin");
+    redirectAfterLogin(email);
   }
 
   return {
